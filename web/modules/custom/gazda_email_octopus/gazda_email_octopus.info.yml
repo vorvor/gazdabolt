@@ -1,0 +1,7 @@
+name: Gazda EmailOctopus integration
+type: module
+description: 'Adapts the EmailOctopus subscription form for the Gazda footer.'
+package: Custom
+core_version_requirement: ^10 || ^11
+dependencies:
+  - email_octopus:email_octopus

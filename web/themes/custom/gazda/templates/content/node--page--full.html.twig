@@ -1,0 +1,13 @@
+{#
+/**
+ * @file
+ * Full page content without Claro's administrative presentation wrappers.
+ */
+#}
+<article{{ attributes.addClass('gazda-page') }}>
+  {{ title_prefix }}
+  {{ title_suffix }}
+  <div{{ content_attributes.addClass('gazda-page__content') }}>
+    {{ content|without('links') }}
+  </div>
+</article>

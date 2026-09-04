@@ -1,0 +1,67 @@
+{#
+/**
+ * @file
+ * Default page layout for the Gazda theme.
+ */
+#}
+{% set asset_path = base_path ~ directory %}
+<header id="header" role="banner">
+  <div id="header-top">
+    {% if page.utility %}
+      {{ page.utility }}
+    {% else %}
+      <div id="col-first" class="header-col"><div class="icon"><img src="{{ asset_path }}/images/phone.png" alt="" width="30" height="30"></div><div class="text"><a href="tel:+3626311993">+36 26 311 993</a></div></div>
+      <div id="col-second" class="header-col"><div class="icon"><img src="{{ asset_path }}/images/pin.png" alt="" width="30" height="30"></div><div class="text">{{ 'Szentendre, Bolgár u. 2.'|t }}</div></div>
+      <div class="header-col"><div class="icon"><img src="{{ asset_path }}/images/email.png" alt="" width="30" height="30"></div><div class="text"><a href="mailto:info@gazdaboltszentendre.hu">info@gazdaboltszentendre.hu</a></div></div>
+      <div id="col-third" class="header-col"><div class="icon"><img src="{{ asset_path }}/images/fb.png" alt="Facebook" width="30" height="30"></div><div class="text">/szentendre-gazdabolt</div></div>
+    {% endif %}
+  </div>
+  <div id="header-bottom">
+    <a id="logo" href="{{ front_page }}" rel="home"><img src="{{ asset_path }}/images/gazdabolt-logo.jpg" alt="{{ 'Gazdabolt home'|t }}" width="76" height="76"></a>
+    <div class="title"><div class="site-name">{{ site_name|default('Gazdabolt'|t) }}</div><div class="site-location">{{ 'Szentendre'|t }}</div></div>
+    {{ page.header }}
+  </div>
+  {% if page.primary_menu and not is_front %}<nav class="primary-menu" aria-label="{{ 'Primary navigation'|t }}">{{ page.primary_menu }}</nav>{% endif %}
+</header>
+
+{% block main %}
+<main id="main-content" class="gazda-main">
+  {% if page.breadcrumb %}<div class="gazda-breadcrumb">{{ page.breadcrumb }}</div>{% endif %}
+  {{ page.highlighted }}
+  {{ page.help }}
+  {{ page.content }}
+</main>
+{% endblock %}
+
+<footer id="footer" role="contentinfo">
+  <div id="footer-left" aria-label="{{ 'Map showing the shop location'|t }}"></div>
+  <div id="footer-center">
+    <div class="logo"><img src="{{ asset_path }}/images/gazdabolt-logo-mono.png" alt="" width="100" height="100"></div>
+    <div class="text">
+      <div class="name">{{ 'Gazdabolt Szentendre'|t }}</div>
+      <div class="contact"><div class="icon"><img src="{{ asset_path }}/images/phone.png" alt=""></div><div class="data"><a href="tel:+3626311993">+36 26 311 993</a></div></div>
+      <div class="contact"><div class="icon"><img src="{{ asset_path }}/images/pin.png" alt=""></div><div class="data">{{ 'Szentendre, Bolgár u. 2.'|t }}</div></div>
+      <div class="contact"><div class="icon"><img src="{{ asset_path }}/images/email.png" alt=""></div><div class="data"><a href="mailto:info@gazdaboltszentendre.hu">info@gazdaboltszentendre.hu</a></div></div>
+    </div>
+  </div>
+  <div id="footer-right">
+    {% if page.newsletter %}
+      <div class="contact newsletter">
+        <h2>{{ 'Iratkozz fel hírlevelünkre!'|t }}</h2>
+        <p>{{ 'Értesülj elsőként a helyi újdonságokról és ajánlatokról.'|t }}</p>
+        {{ page.newsletter }}
+      </div>
+    {% else %}
+      <div class="contact newsletter">
+        <h2>{{ 'Iratkozz fel hírlevelünkre!'|t }}</h2>
+        <p>{{ 'Értesülj elsőként a helyi újdonságokról és ajánlatokról.'|t }}</p>
+        <div class="newsletter-actions">
+          <a class="newsletter-email" href="mailto:info@gazdaboltszentendre.hu?subject={{ 'Hírlevél feliratkozás'|t|url_encode }}">{{ 'e-mail cím'|t }}</a>
+          <a class="newsletter-button" href="mailto:info@gazdaboltszentendre.hu?subject={{ 'Hírlevél feliratkozás'|t|url_encode }}">{{ 'Feliratkozás'|t }}</a>
+        </div>
+      </div>
+    {% endif %}
+    {{ page.footer }}
+  </div>
+</footer>
+<div id="post-footer"><div class="footer-separator"></div>{{ '© @year Gazdabolt Szentendre.'|t({'@year': 'now'|date('Y')}) }}</div>

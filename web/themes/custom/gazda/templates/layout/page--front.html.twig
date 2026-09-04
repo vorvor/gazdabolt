@@ -1,0 +1,108 @@
+{#
+/**
+ * @file
+ * Gazdabolt landing page adapted from the supplied responsive HTML draft.
+ */
+#}
+{% extends '@gazda/layout/page.html.twig' %}
+
+{% block main %}
+<main id="main-content">
+  {{ page.highlighted }}
+  {{ page.help }}
+  <div id="content">
+    <section id="hero" aria-labelledby="hero-title">
+      <div id="hero-image"><img src="{{ asset_path }}/images/hero-image-woman-2.png" alt="" fetchpriority="high"></div>
+      <div id="hero-text">
+        <h1 id="hero-title">{{ 'Minden, ami'|t }}<br>{{ 'a kerthez kell.'|t }}</h1>
+        <h2>{{ 'Szentendrén - egy helyen.'|t }}</h2>
+        <p>{{ 'Kertészeti termékek, vetőmagok, vegyszerek, műhelyfelszerelés - és sok más. Szakértelemmel és sok szeretettel.'|t }}</p>
+      </div>
+    </section>
+
+    <section id="introduction" aria-label="{{ 'About Gazdabolt'|t }}">
+      <div class="text">{{ page.content }}</div>
+      <div class="icons" aria-label="{{ 'Gazdabolt in numbers'|t }}">
+        <div class="block"><div class="icon"><img src="{{ asset_path }}/images/icons/clock.png" alt=""></div><div class="text"><strong>45</strong><span>{{ 'év tapasztalat'|t }}</span></div></div>
+        <div class="block"><div class="icon"><img src="{{ asset_path }}/images/icons/gardening.png" alt=""></div><div class="text"><strong>4000+</strong><span>{{ 'termék'|t }}</span></div></div>
+        <div class="block"><div class="icon"><img src="{{ asset_path }}/images/icons/user.png" alt=""></div><div class="text"><strong>10000+</strong><span>{{ 'elégedett vásárló'|t }}</span></div></div>
+      </div>
+    </section>
+
+    <div class="separator" role="heading" aria-level="2"><div class="separator-line"></div><div class="separator-icon"><img src="{{ asset_path }}/images/separators/sep-tomato-2.png" alt=""></div><div class="separator-text">{{ 'Termékkategóriák'|t }}</div><div class="separator-line"></div></div>
+    <section id="categories" aria-label="{{ 'Product categories'|t }}">
+      {% for category in gazda_categories %}
+        <article class="category"><a href="{{ category.url }}">{{ category.image }}<div class="cat-label">{{ category.name }}</div></a></article>
+      {% endfor %}
+    </section>
+
+    {% if gazda_discount %}
+      <section id="discount" aria-label="{{ 'Current discount'|t }}">
+        <div id="discount-img">{{ gazda_discount.image }}</div>
+        <div id="discount-text"><div id="discount-subtitle">{{ gazda_discount.rate }}% {{ 'kedvezmény'|t }}</div><div id="discount-title">{{ gazda_discount.description }}</div></div>
+        <div id="discount-dates">
+          <time class="date" datetime="{{ gazda_discount.date_from.raw }}"><span class="date-label">{{ 'kezdet'|t }}</span><span class="date-value"><span class="date-value-year-month">{{ gazda_discount.date_from.year_month }}</span><span class="date-value-day">{{ gazda_discount.date_from.day }}</span></span></time>
+          <time class="date" datetime="{{ gazda_discount.date_to.raw }}"><span class="date-label">{{ 'vége'|t }}</span><span class="date-value"><span class="date-value-year-month">{{ gazda_discount.date_to.year_month }}</span><span class="date-value-day">{{ gazda_discount.date_to.day }}</span></span></time>
+        </div>
+      </section>
+    {% endif %}
+
+    <div class="separator" role="heading" aria-level="2"><div class="separator-line"></div><div class="separator-icon"><img src="{{ asset_path }}/images/separators/sep-saw-2.png" alt=""></div><div class="separator-text">{{ 'Népszerű'|t }}</div><div class="separator-line"></div></div>
+    {% set products = [
+      ['product-1.jpg', 'Univerzális tisztítószer', 'Sokoldalú tisztítószer a háztartás mindennapi feladataihoz.'],
+      ['product-2.jpg', 'Oltó olló', 'Pontos és tiszta vágást biztosító megbízható kerti szerszám.'],
+      ['product-3.jpg', 'Gyeptrágya', 'Tápanyag a sűrű, egészséges és üde zöld gyephez.'],
+      ['product-4.jpg', 'Konyhai mérleg', 'Praktikus és pontos segítség a mindennapi sütéshez-főzéshez.'],
+      ['product-5.jpg', 'Mosogatószer', 'Hatékony tisztítás és ragyogóan tiszta edények.']
+    ] %}
+    <section id="top-products" aria-label="{{ 'Popular products'|t }}">
+      <div class="arrow-wrapper" aria-hidden="true"><div class="arrow"></div></div>
+      <div id="products-slider">
+        {% for product in products %}<article class="product"><div class="product-image"><img src="{{ asset_path }}/images/products/{{ product[0] }}" alt="" loading="lazy"></div><h3 class="product-name">{{ product[1]|t }}</h3><div class="product-desc">{{ product[2]|t }}</div></article>{% endfor %}
+      </div>
+      <div class="arrow-wrapper arrow-wrapper-right" aria-hidden="true"><div class="arrow arrow-right"></div></div>
+    </section>
+
+    {% if gazda_current_news %}
+      <section id="actual-wrapper" aria-label="{{ 'Seasonal advice'|t }}">
+        <article id="actual">
+          <div class="actual-text">
+            <div class="actual-subtitle"><time datetime="{{ gazda_current_news.date_raw }}">{{ gazda_current_news.month }}</time></div>
+            <h2 class="actual-title">{{ gazda_current_news.title }}</h2>
+            <div class="actual-desc">{{ gazda_current_news.description }}</div>
+          </div>
+          {{ gazda_current_news.image }}
+        </article>
+      </section>
+    {% endif %}
+
+    {% if gazda_news %}
+      <div class="separator" role="heading" aria-level="2"><div class="separator-line"></div><div class="separator-icon"><img src="{{ asset_path }}/images/separators/sep-leaf-2.png" alt=""></div><div class="separator-text">{{ 'Friss hírek'|t }}</div><div class="separator-line"></div></div>
+      <section id="news-wrapper" aria-label="{{ 'Latest news'|t }}">
+        <article id="news">
+          <div class="news-col-1"><a href="{{ gazda_news.url }}">{{ gazda_news.image }}</a></div>
+          <div class="news-col-2">
+            <div class="news-header"><div class="left">{{ 'Újdonság'|t }}</div><time class="right" datetime="{{ gazda_news.date_raw }}">{{ gazda_news.date_display }}</time></div>
+            <h2 class="news-title"><a href="{{ gazda_news.url }}">{{ gazda_news.title }}</a></h2>
+            <div class="news-lead">{{ gazda_news.description }}</div>
+          </div>
+        </article>
+      </section>
+    {% endif %}
+
+    <div class="separator" role="heading" aria-level="2"><div class="separator-line"></div><div class="separator-icon"><img src="{{ asset_path }}/images/separators/sep-sun-2.png" alt=""></div><div class="separator-text">{{ 'Vásárlóink mondták'|t }}</div><div class="separator-line"></div></div>
+    <section id="customer-reviews" aria-label="{{ 'Customer reviews'|t }}">
+      {% for review in gazda_reviews %}
+        <article{{ review.attributes }}><div class="customer-review-image">{{ review.image }}</div><h3 class="customer-name">{{ review.name }}</h3><div class="rev-separator"></div><div class="customer-review-text">{{ review.description }}</div></article>
+      {% else %}
+        {% set fallback_reviews = [
+          ['customer3.png', 'Peredy Márta', 'Meglepően nagy az áruválaszték, szinte mindig megtalálom, amit keresek. Ha bizonytalan vagyok, készségesen segítenek kiválasztani a megfelelő terméket.'],
+          ['customer2.png', 'Kovács Lajos', 'Kedves, türelmes és hozzáértő kiszolgálás fogad minden alkalommal. Jó érzés olyan helyen vásárolni, ahol valóban figyelnek az ember kérdéseire.'],
+          ['customer1.png', 'Németh Albert', 'Sokféle termék kapható egy helyen, ezért ritkán kell máshová mennem. Megbízható, barátságos helyi üzlet, ahová szívesen térek vissza.']
+        ] %}
+        {% for review in fallback_reviews %}<article class="customer-review"><div class="customer-review-image"><img src="{{ asset_path }}/images/{{ review[0] }}" alt="" loading="lazy"></div><h3 class="customer-name">{{ review[1] }}</h3><div class="rev-separator"></div><div class="customer-review-text">{{ review[2]|t }}</div></article>{% endfor %}
+      {% endfor %}
+    </section>
+  </div>
+</main>
+{% endblock %}

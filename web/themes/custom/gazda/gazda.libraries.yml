@@ -1,0 +1,13 @@
+global:
+  version: 1.x
+  css:
+    theme:
+      'https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Varela+Round&display=swap':
+        type: external
+        minified: true
+      css/style.css: {}
+  js:
+    js/front-effects.js: {}
+  dependencies:
+    - core/drupal
+    - core/once

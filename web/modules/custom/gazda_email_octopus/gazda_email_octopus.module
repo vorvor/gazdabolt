@@ -1,0 +1,35 @@
+<?php
+
+/**
+ * @file
+ * Form alterations for the Gazda EmailOctopus integration.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function gazda_email_octopus_form_octopus_subscribe_form_alter(array &$form, FormStateInterface $form_state): void {
+  unset($form['content'], $form['dest_wrapper']['back_btn']);
+
+  $form['#attributes']['class'][] = 'email-octopus-newsletter-form';
+  $form['dest_wrapper']['#attributes']['class'][] = 'newsletter-actions';
+  $form['dest_wrapper']['value']['#attributes']['class'][] = 'newsletter-result';
+
+  $form['dest_wrapper']['email']['#type'] = 'email';
+  $form['dest_wrapper']['email']['#title'] = t('E-mail cím');
+  $form['dest_wrapper']['email']['#required'] = TRUE;
+  $form['dest_wrapper']['email']['#attributes'] = [
+    'autocomplete' => 'email',
+    'inputmode' => 'email',
+    'class' => ['newsletter-email'],
+  ];
+
+  $form['dest_wrapper']['submit']['#value'] = t('Feliratkozás');
+  $form['dest_wrapper']['submit']['#attributes']['class'][] = 'newsletter-button';
+  unset(
+    $form['dest_wrapper']['submit']['#prefix'],
+    $form['dest_wrapper']['submit']['#suffix']
+  );
+}

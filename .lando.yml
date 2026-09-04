@@ -1,0 +1,58 @@
+name: hermes-drupal-test
+
+recipe: drupal10
+
+env_file:
+  - ./.lando/hermes/hermes.env
+
+config:
+  php: '8.4'
+  composer_version: '2-latest'
+  via: apache:2.4
+  webroot: web
+  database: mariadb:10.11
+  xdebug: false
+
+# Ne töltsük be automatikusan a Mac ~/.ssh kulcsait.
+keys: false
+
+services:
+
+  hermes:
+    api: 4
+    type: l337
+
+    image: ./.lando/hermes/Dockerfile
+
+    command: sleep infinity
+
+    working_dir: /workspace
+
+    stdin_open: true
+    tty: true
+
+    environment:
+      HERMES_HOME: /opt/data
+      HERMES_WRITE_SAFE_ROOT: /workspace:/opt/data
+      COMPOSER_HOME: /opt/data/composer
+
+    volumes:
+      - ./:/workspace
+      - hermes-data:/opt/data
+
+volumes:
+  hermes-data:
+
+tooling:
+
+  hermes:
+    service: hermes
+    cmd: hermes
+    dir: /workspace
+    user: hermes
+
+  hermes-shell:
+    service: hermes
+    cmd: bash
+    dir: /workspace
+    user: hermes
