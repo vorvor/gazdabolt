@@ -26,6 +26,8 @@ function gazda_email_octopus_form_octopus_subscribe_form_alter(array &$form, For
     'class' => ['newsletter-email'],
   ];
 
+  // just for test
+
   $form['dest_wrapper']['submit']['#value'] = t('Feliratkozás');
   $form['dest_wrapper']['submit']['#attributes']['class'][] = 'newsletter-button';
   unset(
