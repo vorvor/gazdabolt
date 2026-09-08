@@ -419,50 +419,68 @@ h1, h2, h3, h4, h5, h6 {
   }
 
   #actual-wrapper {
+    margin-top: 0;
 
-    height: 270px;
-    margin-top: 200px;
     #actual {
-      color: #fff;
-      position: relative;
-      width: 100%;
-      height: 300px;
-      background-image: url("../images/discount-bg-more-opacity.png"), linear-gradient(142deg,rgba(31, 69, 1, 1) 100%, rgba(24, 128, 1, 1) 100%);
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+      width: 75%;
+      margin: 0 auto;
 
-      img {
-        position: absolute;
-        bottom: 0;
-        right: 60px;
-        width: auto;
-        height: 410px;
-        max-width: none;
+      .actual-advice {
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        overflow: hidden;
+        color: #fff;
+        background: linear-gradient(145deg, #294929, #183818);
+        border-radius: 14px;
+        box-shadow: 0 10px 24px rgba(20, 53, 20, 0.2);
+      }
+
+      .actual-image {
+        aspect-ratio: 16 / 9;
+        overflow: hidden;
+
+        img {
+          display: block;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
       }
 
       .actual-text {
-        padding: 32px 0 0 100px;
-
-        div {
-          margin-bottom: 12px;
-        }
+        flex: 1 1 auto;
+        padding: 24px;
 
         .actual-subtitle {
-          background: orange;
-          padding: 4px 17px;
-          border-radius: 16px;
           width: fit-content;
-          font-size: 1em;
+          margin-bottom: 14px;
+          padding: 4px 14px;
+          color: #294929;
+          background: orange;
+          border-radius: 16px;
+          font-size: 0.82em;
+          font-weight: 800;
           text-transform: uppercase;
-          font-weight: bold;
         }
 
         .actual-title {
-          font-size: 3em;
-          font-family: "Arial Rounded MT Bold", serif;
+          margin-bottom: 12px;
+          font-family: "Varela Round", "Arial Rounded MT Bold", sans-serif;
+          font-size: 1.65em;
+          line-height: 1.14;
         }
 
         .actual-desc {
-          width: 60%;
-          font-size: 1.2em;
+          font-size: 1em;
+          line-height: 1.5;
+
+          p {
+            margin: 0;
+          }
         }
       }
     }
@@ -1109,31 +1127,21 @@ h1, h2, h3, h4, h5, h6 {
     display: none;
   }
 
-  #content #actual-wrapper {
-    height: auto;
-    margin-top: 120px;
-  }
-
   #content #actual-wrapper #actual {
-    height: 330px;
-  }
-
-  #content #actual-wrapper #actual img {
-    right: 20px;
-    height: 330px;
+    width: calc(100% - 32px);
+    gap: 18px;
   }
 
   #content #actual-wrapper #actual .actual-text {
-    padding: 30px 0 0 40px;
+    padding: 20px;
   }
 
   #content #actual-wrapper #actual .actual-text .actual-title {
-    font-size: 2.4em;
+    font-size: 1.4em;
   }
 
   #content #actual-wrapper #actual .actual-text .actual-desc {
-    width: 55%;
-    font-size: 1.05em;
+    font-size: 0.95em;
     line-height: 1.4;
   }
 
@@ -1370,35 +1378,22 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 1.35em;
   }
 
-  #content #actual-wrapper {
-    margin-top: 95px;
-  }
-
   #content #actual-wrapper #actual {
-    min-height: 500px;
-    height: auto;
-    overflow: hidden;
+    grid-template-columns: 1fr;
+    gap: 18px;
   }
 
   #content #actual-wrapper #actual .actual-text {
-    position: relative;
-    z-index: 2;
-    padding: 28px 20px 250px;
+    padding: 22px 20px 24px;
   }
 
   #content #actual-wrapper #actual .actual-text .actual-title {
-    font-size: 2em;
-    line-height: 1.1;
+    font-size: 1.55em;
+    line-height: 1.15;
   }
 
   #content #actual-wrapper #actual .actual-text .actual-desc {
-    width: 100%;
     font-size: 0.98em;
-  }
-
-  #content #actual-wrapper #actual img {
-    right: 8px;
-    height: 245px;
   }
 
   #content #news-wrapper #news {

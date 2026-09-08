@@ -64,15 +64,20 @@
     </section>
 
     {% if gazda_current_news %}
+      <div class="separator" role="heading" aria-level="2"><div class="separator-line"></div><div class="separator-icon"><img src="{{ asset_path }}/images/separators/sep-plant-2.png" alt=""></div><div class="separator-text">{{ 'Aktuális'|t }}</div><div class="separator-line"></div></div>
       <section id="actual-wrapper" aria-label="{{ 'Seasonal advice'|t }}">
-        <article id="actual">
-          <div class="actual-text">
-            <div class="actual-subtitle"><time datetime="{{ gazda_current_news.date_raw }}">{{ gazda_current_news.month }}</time></div>
-            <h2 class="actual-title">{{ gazda_current_news.title }}</h2>
-            <div class="actual-desc">{{ gazda_current_news.description }}</div>
-          </div>
-          {{ gazda_current_news.image }}
-        </article>
+        <div id="actual">
+          {% for advice in gazda_current_news %}
+            <article class="actual-advice">
+              <div class="actual-image">{{ advice.image }}</div>
+              <div class="actual-text">
+                <div class="actual-subtitle"><time datetime="{{ advice.date_raw }}">{{ advice.month }}</time></div>
+                <h2 class="actual-title">{{ advice.title }}</h2>
+                <div class="actual-desc">{{ advice.description }}</div>
+              </div>
+            </article>
+          {% endfor %}
+        </div>
       </section>
     {% endif %}
 

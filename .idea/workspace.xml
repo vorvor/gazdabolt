@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5e87adee-cf19-4992-8097-1b23c0ab6272" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/web/modules/custom/gazda_email_octopus/gazda_email_octopus.module" beforeDir="false" afterPath="$PROJECT_DIR$/web/modules/custom/gazda_email_octopus/gazda_email_octopus.module" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -238,7 +238,7 @@
       <workItem from="1787263177240" duration="3025000" />
       <workItem from="1787759297827" duration="203000" />
       <workItem from="1788266777324" duration="940000" />
-      <workItem from="1788357213035" duration="307000" />
+      <workItem from="1788357213035" duration="1095000" />
     </task>
     <servers />
   </component>

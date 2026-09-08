@@ -9,6 +9,38 @@ use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Template\Attribute;
 
 /**
+ * Implements hook_preprocess_html().
+ */
+function gazda_preprocess_html(array &$variables): void {
+  if (!\Drupal::currentUser()->hasPermission('access navigation')) {
+    return;
+  }
+
+  $component_manager = \Drupal::service('plugin.manager.sdc');
+  $component_name = 'navigation:toolbar-button';
+  $component = $component_manager->find($component_name);
+  $twig = \Drupal::service('twig');
+
+  // Component discovery caches absolute paths. When Drush and the web server
+  // use different project mount points, refresh an inaccessible definition so
+  // Twig does not cache an empty toolbar button template.
+  if (!is_file($component->getTemplatePath())) {
+    $component_manager->clearCachedDefinitions();
+    $twig_cache = $twig->getCache(FALSE);
+    $twig->setCache(FALSE);
+    try {
+      $twig->load($component_name);
+    }
+    finally {
+      $twig->setCache($twig_cache);
+    }
+    return;
+  }
+
+  $twig->load($component_name);
+}
+
+/**
  * Implements hook_preprocess_page().
  */
 function gazda_preprocess_page(array &$variables): void {
@@ -18,7 +50,7 @@ function gazda_preprocess_page(array &$variables): void {
 
   $variables['gazda_discount'] = NULL;
   $variables['gazda_categories'] = [];
-  $variables['gazda_current_news'] = NULL;
+  $variables['gazda_current_news'] = [];
   $variables['gazda_news'] = NULL;
   $variables['gazda_reviews'] = [];
   $entity_type_manager = \Drupal::entityTypeManager();
@@ -91,10 +123,10 @@ function gazda_preprocess_page(array &$variables): void {
     ->condition('status', 1)
     ->sort('field_date', 'DESC')
     ->sort('created', 'DESC')
-    ->range(0, 1)
+    ->range(0, 3)
     ->execute();
 
-  if ($current_news_ids && ($current_news = $node_storage->load(reset($current_news_ids)))) {
+  if ($current_news_ids) {
     $months = [
       1 => 'január',
       2 => 'február',
@@ -109,25 +141,27 @@ function gazda_preprocess_page(array &$variables): void {
       11 => 'november',
       12 => 'december',
     ];
-    $date = $current_news->get('field_date')->date;
-    $variables['gazda_current_news'] = [
-      'title' => $current_news->label(),
-      'description' => $view_builder->viewField($current_news->get('field_description'), [
-        'label' => 'hidden',
-        'type' => 'text_default',
-      ]),
-      'image' => $view_builder->viewField($current_news->get('field_image'), [
-        'label' => 'hidden',
-        'type' => 'image',
-        'settings' => [
-          'image_link' => '',
-          'image_loading' => ['attribute' => 'lazy'],
-        ],
-      ]),
-      'date_raw' => $current_news->get('field_date')->value,
-      'month' => $date ? $months[(int) $date->format('n')] : '',
-    ];
-    CacheableMetadata::createFromObject($current_news)->applyTo($variables);
+    foreach ($node_storage->loadMultiple($current_news_ids) as $current_news) {
+      $date = $current_news->get('field_date')->date;
+      $variables['gazda_current_news'][] = [
+        'title' => $current_news->label(),
+        'description' => $view_builder->viewField($current_news->get('field_description'), [
+          'label' => 'hidden',
+          'type' => 'text_default',
+        ]),
+        'image' => $view_builder->viewField($current_news->get('field_image'), [
+          'label' => 'hidden',
+          'type' => 'image',
+          'settings' => [
+            'image_link' => '',
+            'image_loading' => ['attribute' => 'lazy'],
+          ],
+        ]),
+        'date_raw' => $current_news->get('field_date')->value,
+        'month' => $date ? $months[(int) $date->format('n')] : '',
+      ];
+      CacheableMetadata::createFromObject($current_news)->applyTo($variables);
+    }
   }
 
   $article_ids = $node_storage->getQuery()
