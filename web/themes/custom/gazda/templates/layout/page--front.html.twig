@@ -66,12 +66,13 @@
     {% if gazda_current_news %}
       <div class="separator" role="heading" aria-level="2"><div class="separator-line"></div><div class="separator-icon"><img src="{{ asset_path }}/images/separators/sep-plant-2.png" alt=""></div><div class="separator-text">{{ 'Aktuális'|t }}</div><div class="separator-line"></div></div>
       <section id="actual-wrapper" aria-label="{{ 'Seasonal advice'|t }}">
+        {% set advice_month = gazda_current_news|first %}
+        <div class="actual-subtitle"><time datetime="{{ advice_month.date_raw }}">{{ advice_month.month }}</time></div>
         <div id="actual">
           {% for advice in gazda_current_news %}
             <article class="actual-advice">
               <div class="actual-image">{{ advice.image }}</div>
               <div class="actual-text">
-                <div class="actual-subtitle"><time datetime="{{ advice.date_raw }}">{{ advice.month }}</time></div>
                 <h2 class="actual-title">{{ advice.title }}</h2>
                 <div class="actual-desc">{{ advice.description }}</div>
               </div>

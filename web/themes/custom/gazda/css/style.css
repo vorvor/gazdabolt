@@ -123,6 +123,7 @@ h1, h2, h3, h4, h5, h6 {
       h1 {
         margin: 0;
         font-size: 6vw;
+        line-height: 1em;
       }
 
       h2 {
@@ -421,6 +422,18 @@ h1, h2, h3, h4, h5, h6 {
   #actual-wrapper {
     margin-top: 0;
 
+    .actual-subtitle {
+      width: fit-content;
+      margin: 0 auto 24px;
+      padding: 4px 14px;
+      color: #294929;
+      background: orange;
+      border-radius: 16px;
+      font-size: 0.82em;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
     #actual {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -454,18 +467,6 @@ h1, h2, h3, h4, h5, h6 {
       .actual-text {
         flex: 1 1 auto;
         padding: 24px;
-
-        .actual-subtitle {
-          width: fit-content;
-          margin-bottom: 14px;
-          padding: 4px 14px;
-          color: #294929;
-          background: orange;
-          border-radius: 16px;
-          font-size: 0.82em;
-          font-weight: 800;
-          text-transform: uppercase;
-        }
 
         .actual-title {
           margin-bottom: 12px;
