@@ -143,6 +143,21 @@ function gazda_preprocess_page(array &$variables): void {
     ];
     foreach ($node_storage->loadMultiple($current_news_ids) as $current_news) {
       $date = $current_news->get('field_date')->date;
+      $url = '';
+      if (!$current_news->get('field_url')->isEmpty()) {
+        $item = $current_news->get('field_url')->first();
+        $raw = $item->uri ?? $item->value ?? NULL;
+        if ($raw) {
+          try {
+            $url = \Drupal\Core\Url::fromUri($raw)->toString();
+          }
+          catch (\InvalidArgumentException $e) {
+            // Plain string without a scheme (e.g. "example.com") — use as-is,
+            // or prepend a scheme if you know it's always external.
+            $url = $raw;
+          }
+        }
+      }
       $variables['gazda_current_news'][] = [
         'title' => $current_news->label(),
         'description' => $view_builder->viewField($current_news->get('field_description'), [
@@ -157,6 +172,7 @@ function gazda_preprocess_page(array &$variables): void {
             'image_loading' => ['attribute' => 'lazy'],
           ],
         ]),
+        'url' => $url,
         'date_raw' => $current_news->get('field_date')->value,
         'month' => $date ? $months[(int) $date->format('n')] : '',
       ];

@@ -75,6 +75,9 @@
               <div class="actual-text">
                 <h2 class="actual-title">{{ advice.title }}</h2>
                 <div class="actual-desc">{{ advice.description }}</div>
+                {% if advice.url %}
+                  <a class="actual-products-link" href="{{ advice.url }}">{{ 'Kapcsolódó termékek'|t }}<span aria-hidden="true">→</span></a>
+                {% endif %}
               </div>
             </article>
           {% endfor %}
