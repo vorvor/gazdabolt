@@ -5,6 +5,12 @@
  */
 #}
 {% set asset_path = base_path ~ directory %}
+{% if gazda_is_maintenance_mode %}
+<main id="main-content" class="gazda-main gazda-maintenance">
+  <h1>{{ 'Site under maintenance'|t }}</h1>
+  <p>{{ gazda_maintenance_message }}</p>
+</main>
+{% else %}
 <header id="header" role="banner">
   <div id="header-top">
     {% if page.utility %}
@@ -65,3 +71,4 @@
   </div>
 </footer>
 <div id="post-footer"><div class="footer-separator"></div>{{ '© @year Gazdabolt Szentendre.'|t({'@year': 'now'|date('Y')}) }}</div>
+{% endif %}

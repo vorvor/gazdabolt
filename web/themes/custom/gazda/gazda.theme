@@ -44,6 +44,15 @@ function gazda_preprocess_html(array &$variables): void {
  * Implements hook_preprocess_page().
  */
 function gazda_preprocess_page(array &$variables): void {
+  $maintenance_mode = \Drupal::service('maintenance_mode');
+  $variables['gazda_is_maintenance_mode'] = $maintenance_mode
+    ->applies(\Drupal::routeMatch());
+  if ($variables['gazda_is_maintenance_mode']) {
+    $variables['gazda_maintenance_message'] = $maintenance_mode
+      ->getSiteMaintenanceMessage();
+    return;
+  }
+
   if (empty($variables['is_front'])) {
     return;
   }
