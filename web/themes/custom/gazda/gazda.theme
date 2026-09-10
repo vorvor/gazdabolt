@@ -6,7 +6,9 @@
  */
 
 use Drupal\Core\Cache\CacheableMetadata;
+use Drupal\Core\Messenger\MessengerInterface;
 use Drupal\Core\Template\Attribute;
+use Drupal\Core\Url;
 
 /**
  * Implements hook_preprocess_html().
@@ -45,8 +47,30 @@ function gazda_preprocess_html(array &$variables): void {
  */
 function gazda_preprocess_page(array &$variables): void {
   $maintenance_mode = \Drupal::service('maintenance_mode');
-  $variables['gazda_is_maintenance_mode'] = $maintenance_mode
+  $maintenance_mode_applies = $maintenance_mode
     ->applies(\Drupal::routeMatch());
+  $maintenance_mode_exempt = $maintenance_mode_applies &&
+    $maintenance_mode->exempt(\Drupal::currentUser());
+  $variables['gazda_is_maintenance_mode'] = $maintenance_mode_applies &&
+    !$maintenance_mode_exempt;
+  if ($maintenance_mode_exempt) {
+    $translation = \Drupal::translation();
+    $maintenance_notices = [
+      (string) $translation->translate('Operating in maintenance mode.'),
+      (string) $translation->translate(
+        'Operating in maintenance mode. <a href=":url">Go online.</a>',
+        [
+          ':url' => Url::fromRoute('system.site_maintenance_mode')->toString(),
+        ],
+      ),
+    ];
+    $messenger = \Drupal::messenger();
+    foreach ($messenger->deleteByType(MessengerInterface::TYPE_STATUS) as $message) {
+      if (!in_array((string) $message, $maintenance_notices, TRUE)) {
+        $messenger->addStatus($message, TRUE);
+      }
+    }
+  }
   if ($variables['gazda_is_maintenance_mode']) {
     $variables['gazda_maintenance_message'] = $maintenance_mode
       ->getSiteMaintenanceMessage();
