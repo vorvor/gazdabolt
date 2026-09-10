@@ -1,0 +1,28 @@
+uuid: ae321487-022e-4bbc-8cf8-05d6f8a25da7
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: 1noCXlegCr5HFehQRF1ViXy1jhU1jZ_sNN99a8Sj5jo
+id: front
+label: 'Front page'
+tags:
+  title: 'Gazdabolt Szentendre | Minden, ami a kerthez kell'
+  description: 'Kertészeti termékek, vetőmagok, növényvédő szerek és műhelyfelszerelés Szentendrén, szakértő segítséggel és 45 év tapasztalattal.'
+  canonical_url: '[site:url]'
+  shortlink: '[site:url]'
+  og_title: 'Gazdabolt Szentendre | Minden, ami a kerthez kell'
+  og_description: 'Kertészeti termékek, vetőmagok, növényvédő szerek és műhelyfelszerelés Szentendrén, szakértő segítséggel és 45 év tapasztalattal.'
+  og_url: '[site:url]'
+  og_type: website
+  og_image: 'https://gazdaboltszentendre.hu/themes/custom/gazda/images/hero-image-woman-2.png'
+  og_image_alt: 'Gazdabolt Szentendre – minden, ami a kerthez kell'
+  twitter_cards_title: 'Gazdabolt Szentendre | Minden, ami a kerthez kell'
+  twitter_cards_description: 'Kertészeti termékek, vetőmagok, növényvédő szerek és műhelyfelszerelés Szentendrén, szakértő segítséggel és 45 év tapasztalattal.'
+  twitter_cards_image: 'https://gazdaboltszentendre.hu/themes/custom/gazda/images/hero-image-woman-2.png'
+  twitter_cards_image_alt: 'Gazdabolt Szentendre – minden, ami a kerthez kell'
+  schema_web_page_type: WebPage
+  schema_web_page_id: '[site:url]#webpage'
+  schema_web_page_description: 'Kertészeti termékek, vetőmagok, növényvédő szerek és műhelyfelszerelés Szentendrén, szakértő segítséggel és 45 év tapasztalattal.'
+  schema_web_page_in_language: hu-HU
+  schema_web_page_publisher: 'a:5:{s:5:"@type";s:12:"Organization";s:3:"@id";s:23:"[site:url]#organization";s:4:"name";s:11:"[site:name]";s:3:"url";s:10:"[site:url]";s:4:"logo";a:2:{s:5:"@type";s:11:"ImageObject";s:3:"url";s:55:"https://gazdaboltszentendre.hu/themes/custom/gazda/images/gazdabolt-logo.jpg";}}'

@@ -1,0 +1,8 @@
+uuid: 99968739-2d81-4451-affc-04ac788111ca
+langcode: hu
+status: true
+dependencies: {  }
+id: node__current_news
+label: 'Content: Current news item'
+tags:
+  robots: 'noindex, follow'

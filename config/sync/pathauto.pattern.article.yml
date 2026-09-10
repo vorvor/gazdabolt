@@ -1,0 +1,23 @@
+uuid: 3f9b2afa-b333-48f4-9ee7-a054e2b1a91e
+langcode: hu
+status: true
+dependencies:
+  config:
+    - node.type.article
+  module:
+    - node
+id: article
+label: 'Article URLs'
+type: 'canonical_entities:node'
+pattern: '/hirek/[node:title]'
+selection_criteria:
+  80fd5087-b381-4bfa-b2b6-4f2c5c0bc3cf:
+    id: 'entity_bundle:node'
+    negate: false
+    context_mapping:
+      node: node
+    bundles:
+      article: article
+selection_logic: and
+weight: 0
+relationships: {  }

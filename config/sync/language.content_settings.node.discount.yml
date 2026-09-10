@@ -1,0 +1,11 @@
+uuid: 572addf7-efb3-42de-959d-abd3f2864593
+langcode: hu
+status: true
+dependencies:
+  config:
+    - node.type.discount
+id: node.discount
+target_entity_type_id: node
+target_bundle: discount
+default_langcode: hu
+language_alterable: false

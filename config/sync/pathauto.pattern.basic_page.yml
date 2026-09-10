@@ -1,0 +1,23 @@
+uuid: 16b78f38-8473-4ea4-87dc-2ee11e9e0e9c
+langcode: hu
+status: true
+dependencies:
+  config:
+    - node.type.page
+  module:
+    - node
+id: basic_page
+label: 'Basic page URLs'
+type: 'canonical_entities:node'
+pattern: '/[node:title]'
+selection_criteria:
+  cabda693-7813-47e0-aa66-73eb0e64cd32:
+    id: 'entity_bundle:node'
+    negate: false
+    context_mapping:
+      node: node
+    bundles:
+      page: page
+selection_logic: and
+weight: 0
+relationships: {  }

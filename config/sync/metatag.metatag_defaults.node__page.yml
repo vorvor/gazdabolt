@@ -1,0 +1,13 @@
+uuid: f5abf9c1-e6e1-4358-a71d-9cc0ba28b005
+langcode: hu
+status: true
+dependencies: {  }
+id: node__page
+label: 'Content: Basic page'
+tags:
+  schema_web_page_type: WebPage
+  schema_web_page_id: '[node:url:absolute]#webpage'
+  schema_web_page_description: '[node:field_description]'
+  schema_web_page_in_language: hu-HU
+  schema_web_page_publisher: 'a:5:{s:5:"@type";s:12:"Organization";s:3:"@id";s:23:"[site:url]#organization";s:4:"name";s:11:"[site:name]";s:3:"url";s:10:"[site:url]";s:4:"logo";a:2:{s:5:"@type";s:11:"ImageObject";s:3:"url";s:55:"https://gazdaboltszentendre.hu/themes/custom/gazda/images/gazdabolt-logo.jpg";}}'
+  og_type: website

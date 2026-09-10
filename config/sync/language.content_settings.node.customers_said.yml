@@ -1,0 +1,11 @@
+uuid: 65f5eaae-2f7b-4118-bc29-94522024e7c3
+langcode: hu
+status: true
+dependencies:
+  config:
+    - node.type.customers_said
+id: node.customers_said
+target_entity_type_id: node
+target_bundle: customers_said
+default_langcode: hu
+language_alterable: false

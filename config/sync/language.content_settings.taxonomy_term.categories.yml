@@ -1,0 +1,11 @@
+uuid: 00ab0c86-6ff8-416b-a18e-972a20e2fd4f
+langcode: hu
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.categories
+id: taxonomy_term.categories
+target_entity_type_id: taxonomy_term
+target_bundle: categories
+default_langcode: hu
+language_alterable: false

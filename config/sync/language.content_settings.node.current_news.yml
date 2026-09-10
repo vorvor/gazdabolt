@@ -1,0 +1,11 @@
+uuid: 603a3ec2-3e7d-43a1-bb16-6ae1abab1fe5
+langcode: hu
+status: true
+dependencies:
+  config:
+    - node.type.current_news
+id: node.current_news
+target_entity_type_id: node
+target_bundle: current_news
+default_langcode: hu
+language_alterable: false

@@ -1,0 +1,19 @@
+uuid: eec4160f-0040-47f2-9df5-d64e3a82c572
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: rpwvgyEURXLz_JjgMCrkS1rUv-0k3L79BpO-ReN7fDI
+id: node
+label: Content
+tags:
+  title: '[node:title] | [site:name]'
+  description: '[node:field_description]'
+  canonical_url: '[node:url:absolute]'
+  og_site_name: '[site:name]'
+  og_title: '[node:title]'
+  og_description: '[node:field_description]'
+  og_url: '[node:url:absolute]'
+  og_type: article
+  twitter_cards_title: '[node:title]'
+  twitter_cards_description: '[node:field_description]'

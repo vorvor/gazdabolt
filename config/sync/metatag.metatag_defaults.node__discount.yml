@@ -1,0 +1,8 @@
+uuid: 5575b38e-2797-431f-914f-a9c0c30e7dd6
+langcode: hu
+status: true
+dependencies: {  }
+id: node__discount
+label: 'Content: Discount'
+tags:
+  robots: 'noindex, follow'

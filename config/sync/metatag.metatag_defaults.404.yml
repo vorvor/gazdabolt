@@ -1,0 +1,10 @@
+uuid: 3662d705-33a2-4172-bd4a-b5d056a9b0db
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: puBstSLDz8mbaWU357zaqQDBGMGsJzG0j-TQNQkjg20
+id: '404'
+label: '404 page not found'
+tags:
+  robots: 'noindex, follow'

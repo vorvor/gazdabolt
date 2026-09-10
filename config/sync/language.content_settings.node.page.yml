@@ -1,0 +1,11 @@
+uuid: d2516fc4-79d6-40e3-9b98-746597a9007b
+langcode: hu
+status: true
+dependencies:
+  config:
+    - node.type.page
+id: node.page
+target_entity_type_id: node
+target_bundle: page
+default_langcode: hu
+language_alterable: false

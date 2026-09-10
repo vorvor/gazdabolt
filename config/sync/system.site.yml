@@ -2,14 +2,14 @@ _core:
   default_config_hash: ijfbzDTN4CbE7Sr-6ubWzy_t1vH4OtU1doNCLssVz-4
 langcode: en
 uuid: f1061da5-eeb0-4f85-b970-981f37d5f219
-name: Gazdabolt
+name: 'Gazdabolt Szentendre'
 mail: admin@example.com
-slogan: ''
+slogan: 'Minden, ami a kerthez kell.'
 page:
   403: ''
   404: ''
   front: /node/4
 admin_compact_mode: false
 weight_select_max: 100
-default_langcode: en
+default_langcode: hu
 mail_notification: null

@@ -1,0 +1,8 @@
+uuid: 305a9173-c8c5-4f11-b3bf-611900ff0b22
+langcode: hu
+status: true
+dependencies: {  }
+id: node__customers_said
+label: 'Content: Customer review'
+tags:
+  robots: 'noindex, follow'
