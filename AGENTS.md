@@ -1,101 +1,32 @@
 # Drupal Project Context
 
-This is a Drupal 10 project.
+Drupal 11 project rooted at `/workspace`; commands already run inside the development container.
 
-Project root:
+## Architecture
 
-/workspace
+- Web root: `web`
+- Custom modules: `web/modules/custom`
+- Default theme: Gazda at `web/themes/custom/gazda` (Claro base theme)
+- Admin theme: Gin
+- Exported configuration: `config/sync` outside the web root
+- Project-specific Hermes workflows: `.agents/skills`
+- Reusable project checks: `scripts`
 
-You are already running inside the development container.
+## Commands
 
-## Environment
+Use `composer`, `php`, `vendor/bin/drush`, `git`, and `curl` directly. Never use `lando`, Docker commands, `sudo`, or `hermes skin`; Lando runs only on the Mac host.
 
-Use directly:
+After Drupal changes, run `vendor/bin/drush cr` when needed. For maintenance-mode theme changes, run `python3 scripts/verify-maintenance-mode.py`.
 
-- composer
-- php
-- vendor/bin/drush
-- git
-- curl
+## Development rules
 
-NEVER use:
+- Inspect the implementation and `git status` before editing.
+- Never modify `web/core`, `vendor`, or contributed extensions directly.
+- Follow Drupal coding standards and APIs; prefer dependency injection in services.
+- Never read, expose, or commit credentials. Site settings files are intentionally ignored.
+- Never delete, move, or rename `.lando/`, `.lando.yml`, `AGENTS.md`, `.git/`, or `.gitignore`.
+- Do not commit or push unless explicitly requested.
 
-- lando
-- docker
-- docker-compose
-- sudo
-- hermes skin
+## Verification
 
-Lando runs on the Mac host and is not available inside your container.
-
-## Drupal
-
-When the user says "theme", "module", "Gin", "Claro",
-"Olivero", "Pathauto", "Webform", etc., interpret these
-as Drupal concepts unless explicitly stated otherwise.
-
-Install contributed Drupal packages with Composer.
-
-Example:
-
-composer require drupal/gin
-
-Enable modules/themes with Drush.
-
-Example:
-
-vendor/bin/drush theme:enable gin -y
-
-After Drupal changes, run when appropriate:
-
-vendor/bin/drush cr
-
-## Drupal development
-
-Custom modules:
-
-web/modules/custom
-
-Custom themes:
-
-web/themes/custom
-
-Never modify:
-
-- web/core
-- vendor
-- contributed modules directly
-
-Follow Drupal coding standards.
-
-Prefer dependency injection over static \Drupal calls.
-
-Use Drupal APIs instead of custom low-level implementations.
-
-## Infrastructure
-
-Never delete, move or rename:
-
-- .lando/
-- .lando.yml
-- AGENTS.md
-- .git/
-- .gitignore
-
-## Workflow
-
-Before changing code:
-
-1. Inspect the current implementation.
-2. Run git status.
-3. Understand the existing architecture.
-
-After changing code:
-
-1. Validate the implementation.
-2. Rebuild cache when needed.
-3. Check relevant Drupal errors.
-4. Run git diff.
-5. Report what changed.
-
-Do not commit or push unless explicitly requested.
+Validate changed files, rebuild caches when applicable, check relevant Drupal errors, run `git diff --check`, and inspect the final diff. Test both anonymous and authorized behavior when access permissions affect rendering.
