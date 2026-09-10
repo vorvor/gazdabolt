@@ -1,0 +1,21 @@
+uuid: 1baca21f-1478-4bb0-8ff0-f85b44ec18fe
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_date_to
+    - node.type.discount
+  module:
+    - datetime
+id: node.discount.field_date_to
+field_name: field_date_to
+entity_type: node
+bundle: discount
+label: 'Date to'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

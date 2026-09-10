@@ -1,0 +1,72 @@
+uuid: e758e18e-e84b-45d2-97f5-a78480ca95d6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.discount.field_date_from
+    - field.field.node.discount.field_date_to
+    - field.field.node.discount.field_description
+    - field.field.node.discount.field_discount_rate
+    - field.field.node.discount.field_image
+    - node.type.discount
+  module:
+    - datetime
+    - image
+    - text
+    - user
+id: node.discount.default
+targetEntityType: node
+bundle: discount
+mode: default
+content:
+  field_date_from:
+    type: datetime_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_date_to:
+    type: datetime_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_description:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_discount_rate:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_image:
+    type: image
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: ''
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden: {  }

@@ -1,0 +1,22 @@
+uuid: a2e6b682-73ea-492a-8a22-c09b96753d64
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_description
+    - node.type.discount
+  module:
+    - text
+id: node.discount.field_description
+field_name: field_description
+entity_type: node
+bundle: discount
+label: Description
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

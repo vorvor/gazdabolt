@@ -1,0 +1,22 @@
+uuid: d89902f6-62bb-47d6-9bad-314e27de1b4d
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - gazda
+_core:
+  default_config_hash: erQSEZF2XUjNmgTl0uNRBzmg18ZGXwUcw2FhApoeuHk
+id: gazda_content
+theme: gazda
+region: content
+weight: 0
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  label_display: '0'
+  provider: system
+visibility: {  }

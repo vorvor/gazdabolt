@@ -1,0 +1,25 @@
+uuid: 385e93c7-98a2-4d69-9b1f-80a2a202671e
+langcode: en
+status: true
+dependencies:
+  module:
+    - email_octopus
+    - gazda_email_octopus
+  theme:
+    - gazda
+id: gazda_newsletter
+theme: gazda
+region: newsletter
+weight: 0
+provider: null
+plugin: gazda_email_octopus_subscribe_form_block
+settings:
+  id: gazda_email_octopus_subscribe_form_block
+  label: Hírlevél-feliratkozás
+  label_display: '0'
+  provider: gazda_email_octopus
+  api_list: 9892fd12-9618-11f1-b011-7369a6de8e41
+  title: ''
+  body: ''
+  message: 'Köszönjük a feliratkozást!'
+visibility: {  }

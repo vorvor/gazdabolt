@@ -1,0 +1,9 @@
+uuid: c87036c3-366f-40ee-8ed5-6dbba191e4a2
+langcode: en
+status: true
+dependencies: {  }
+name: Categories
+vid: categories
+description: 'Gazdabolt product categories.'
+weight: 0
+new_revision: false

@@ -1,0 +1,62 @@
+uuid: 3bff5aee-7f2c-4edf-8eb4-cfe8615507ca
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.current_news.field_date
+    - field.field.node.current_news.field_description
+    - field.field.node.current_news.field_image
+    - field.field.node.current_news.field_url
+    - node.type.current_news
+  module:
+    - datetime
+    - image
+    - text
+    - user
+id: node.current_news.default
+targetEntityType: node
+bundle: current_news
+mode: default
+content:
+  field_date:
+    type: datetime_custom
+    label: hidden
+    settings:
+      timezone_override: ''
+      date_format: 'F Y'
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_image:
+    type: image
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: ''
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_url:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+      link_rel: canonical
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden: {  }

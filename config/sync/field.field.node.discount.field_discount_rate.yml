@@ -1,0 +1,23 @@
+uuid: 9fce07f2-c0a5-4b7e-b2f6-0d16b2b1cbdf
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_discount_rate
+    - node.type.discount
+id: node.discount.field_discount_rate
+field_name: field_discount_rate
+entity_type: node
+bundle: discount
+label: 'Discount rate'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 0
+  max: 100
+  prefix: ''
+  suffix: '%'
+field_type: integer

@@ -1,0 +1,22 @@
+uuid: 56900c03-b1f0-4c55-89f1-060782fbb35b
+langcode: en
+status: false
+dependencies:
+  module:
+    - system
+  theme:
+    - gazda
+_core:
+  default_config_hash: eYL19CLDyinGTWYQfBD1DswWzglEotE_kHnHx3AxTXM
+id: gazda_powered
+theme: gazda
+region: utility
+weight: 0
+provider: null
+plugin: system_powered_by_block
+settings:
+  id: system_powered_by_block
+  label: 'Powered by Drupal'
+  label_display: '0'
+  provider: system
+visibility: {  }

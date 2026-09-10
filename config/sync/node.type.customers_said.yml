@@ -1,0 +1,11 @@
+uuid: b0a8b079-a3f1-4043-89ad-1db0fcde6afa
+langcode: en
+status: true
+dependencies: {  }
+name: 'Customers said'
+type: customers_said
+description: 'Customer testimonials with a name, review, and portrait.'
+help: null
+new_revision: false
+preview_mode: 1
+display_submitted: false

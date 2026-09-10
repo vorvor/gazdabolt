@@ -1,0 +1,22 @@
+uuid: 5d3c893a-aa90-47fe-b043-0015530e309f
+langcode: en
+status: false
+dependencies:
+  module:
+    - help
+  theme:
+    - gazda
+_core:
+  default_config_hash: VfPFqqxfkomud5CO8DUijw85QIl9GIxh_nIxLOYESxg
+id: gazda_help
+theme: gazda
+region: utility
+weight: 0
+provider: null
+plugin: help_block
+settings:
+  id: help_block
+  label: Help
+  label_display: '0'
+  provider: help
+visibility: {  }

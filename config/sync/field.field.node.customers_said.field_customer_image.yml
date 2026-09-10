@@ -1,0 +1,33 @@
+uuid: 15de6d6c-7a0a-4a4e-9c67-3245389afea2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_customer_image
+    - node.type.customers_said
+  module:
+    - image
+id: node.customers_said.field_customer_image
+field_name: field_customer_image
+entity_type: node
+bundle: customers_said
+label: Image
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: customers-said
+  file_extensions: 'png jpg jpeg webp'
+  max_filesize: ''
+  max_resolution: ''
+  min_resolution: ''
+  alt_field: true
+  alt_field_required: true
+  title_field: false
+  title_field_required: false
+  default_image: {  }
+field_type: image

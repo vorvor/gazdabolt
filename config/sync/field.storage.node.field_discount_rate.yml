@@ -1,0 +1,20 @@
+uuid: 51585eb4-d1ad-4775-9d23-dff78c3a8ca7
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_discount_rate
+field_name: field_discount_rate
+entity_type: node
+type: integer
+settings:
+  unsigned: true
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

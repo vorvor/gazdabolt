@@ -1,0 +1,11 @@
+uuid: 81ce99e1-8722-4755-834c-5811dc787ae9
+langcode: en
+status: true
+dependencies: {  }
+name: Discount
+type: discount
+description: 'Time-bounded promotions displayed by the Gazda theme.'
+help: null
+new_revision: false
+preview_mode: 1
+display_submitted: false

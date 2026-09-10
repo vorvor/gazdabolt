@@ -1,0 +1,11 @@
+uuid: 11d61917-2ecb-4bdf-aa0e-3797f6dabf6b
+langcode: en
+status: true
+dependencies: {  }
+name: 'Current news'
+type: current_news
+description: 'Month-based seasonal advice displayed on the Gazda front page.'
+help: null
+new_revision: false
+preview_mode: 1
+display_submitted: false

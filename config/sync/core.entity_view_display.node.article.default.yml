@@ -1,0 +1,52 @@
+uuid: 365bf087-0082-4706-a9c9-1e79b1428618
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.article.field_date
+    - field.field.node.article.field_description
+    - field.field.node.article.field_image
+    - node.type.article
+  module:
+    - datetime
+    - image
+    - text
+    - user
+id: node.article.default
+targetEntityType: node
+bundle: article
+mode: default
+content:
+  field_date:
+    type: datetime_custom
+    label: hidden
+    settings:
+      timezone_override: ''
+      date_format: 'Y. m. d.'
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_image:
+    type: image
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: ''
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden: {  }

@@ -1,0 +1,11 @@
+uuid: 9a61ffd3-d8f4-4f0a-8535-d3244ea283e4
+langcode: en
+status: true
+dependencies: {  }
+name: Page
+type: page
+description: 'Use for static page content.'
+help: null
+new_revision: false
+preview_mode: 1
+display_submitted: false

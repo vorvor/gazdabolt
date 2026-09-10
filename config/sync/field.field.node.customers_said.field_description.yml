@@ -1,0 +1,22 @@
+uuid: 5d11afbb-4443-4624-a74c-4c85cc16fa7f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_description
+    - node.type.customers_said
+  module:
+    - text
+id: node.customers_said.field_description
+field_name: field_description
+entity_type: node
+bundle: customers_said
+label: Description
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

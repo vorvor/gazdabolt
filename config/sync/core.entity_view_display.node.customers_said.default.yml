@@ -1,0 +1,52 @@
+uuid: 0e6b07b5-5c73-4927-81f8-70a180f9ad92
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.customers_said.field_customer_image
+    - field.field.node.customers_said.field_customer_name
+    - field.field.node.customers_said.field_description
+    - image.style.medium
+    - node.type.customers_said
+  module:
+    - image
+    - text
+    - user
+id: node.customers_said.default
+targetEntityType: node
+bundle: customers_said
+mode: default
+content:
+  field_customer_image:
+    type: image
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: medium
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_customer_name:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+      link_rel: canonical
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden: {  }
