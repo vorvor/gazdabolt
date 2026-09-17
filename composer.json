@@ -23,6 +23,7 @@
         "drupal/core-recommended": "^11.4",
         "drupal/email_octopus": "^2.0",
         "drupal/gin": "^5.0",
+        "drupal/honeypot": "^2.2",
         "drupal/metatag": "^2.2",
         "drupal/pathauto": "^1.15",
         "drupal/redirect": "^1.13",
