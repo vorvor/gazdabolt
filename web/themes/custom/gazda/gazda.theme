@@ -6,6 +6,7 @@
  */
 
 use Drupal\Core\Cache\CacheableMetadata;
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Messenger\MessengerInterface;
 use Drupal\Core\Template\Attribute;
 use Drupal\Core\Url;
@@ -40,6 +41,32 @@ function gazda_preprocess_html(array &$variables): void {
   }
 
   $twig->load($component_name);
+}
+
+/**
+ * Implements hook_page_attachments_alter().
+ */
+function gazda_page_attachments_alter(array &$attachments): void {
+  if (!\Drupal::service('path.matcher')->isFrontPage()) {
+    return;
+  }
+
+  $entity_type_manager = \Drupal::entityTypeManager();
+  $node_type = $entity_type_manager->getDefinition('node');
+  $term_type = $entity_type_manager->getDefinition('taxonomy_term');
+  $cache_tags = [];
+  foreach (['discount', 'current_news', 'article', 'customers_said'] as $bundle) {
+    $cache_tags = array_merge($cache_tags, $node_type->getListCacheTags($bundle));
+  }
+  $cache_tags = array_merge(
+    $cache_tags,
+    $term_type->getListCacheTags('categories'),
+  );
+
+  (new CacheableMetadata())
+    ->setCacheTags(array_unique($cache_tags))
+    ->setCacheContexts(['user'])
+    ->applyTo($attachments);
 }
 
 /**
@@ -89,10 +116,10 @@ function gazda_preprocess_page(array &$variables): void {
   $entity_type_manager = \Drupal::entityTypeManager();
   $node_storage = $entity_type_manager->getStorage('node');
   $view_builder = $entity_type_manager->getViewBuilder('node');
-  (new CacheableMetadata())
-    ->setCacheTags($node_storage->getEntityType()->getListCacheTags())
-    ->applyTo($variables);
-
+  $front_page = \Drupal::routeMatch()->getParameter('node');
+  $variables['gazda_page_edit_url'] = $front_page instanceof EntityInterface
+    ? gazda_entity_edit_url($front_page)
+    : NULL;
   $discount_ids = $node_storage->getQuery()
     ->accessCheck(TRUE)
     ->condition('type', 'discount')
@@ -146,8 +173,8 @@ function gazda_preprocess_page(array &$variables): void {
       ]),
       'date_from' => $format_discount_date($discount->get('field_date_from')->first()),
       'date_to' => $format_discount_date($discount->get('field_date_to')->first()),
+      'edit_url' => gazda_entity_edit_url($discount),
     ];
-    CacheableMetadata::createFromObject($discount)->applyTo($variables);
   }
 
   $current_news_ids = $node_storage->getQuery()
@@ -208,8 +235,8 @@ function gazda_preprocess_page(array &$variables): void {
         'url' => $url,
         'date_raw' => $current_news->get('field_date')->value,
         'month' => $date ? $months[(int) $date->format('n')] : '',
+        'edit_url' => gazda_entity_edit_url($current_news),
       ];
-      CacheableMetadata::createFromObject($current_news)->applyTo($variables);
     }
   }
 
@@ -241,8 +268,8 @@ function gazda_preprocess_page(array &$variables): void {
       ]),
       'date_raw' => $article->get('field_date')->value,
       'date_display' => $date ? $date->format('Y. m. d.') : '',
+      'edit_url' => gazda_entity_edit_url($article),
     ];
-    CacheableMetadata::createFromObject($article)->applyTo($variables);
   }
 
   $term_storage = $entity_type_manager->getStorage('taxonomy_term');
@@ -266,12 +293,9 @@ function gazda_preprocess_page(array &$variables): void {
           'image_loading' => ['attribute' => 'lazy'],
         ],
       ]),
+      'edit_url' => gazda_entity_edit_url($term),
     ];
-    CacheableMetadata::createFromObject($term)->applyTo($variables);
   }
-  (new CacheableMetadata())
-    ->setCacheTags($term_storage->getEntityType()->getListCacheTags())
-    ->applyTo($variables);
 
   $node_ids = $node_storage->getQuery()
     ->accessCheck(TRUE)
@@ -311,7 +335,18 @@ function gazda_preprocess_page(array &$variables): void {
       'image' => $image,
       'name' => $name,
       'description' => $description,
+      'edit_url' => gazda_entity_edit_url($node),
     ];
-    CacheableMetadata::createFromObject($node)->applyTo($variables);
   }
+}
+
+/**
+ * Returns an entity edit URL when the current user may update the entity.
+ */
+function gazda_entity_edit_url(EntityInterface $entity): ?string {
+  $access = $entity->access('update', NULL, TRUE);
+
+  return $access->isAllowed()
+    ? $entity->toUrl('edit-form')->toString()
+    : NULL;
 }

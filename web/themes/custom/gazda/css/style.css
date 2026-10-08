@@ -71,6 +71,32 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #content {
+  .gazda-quick-edit {
+    position: absolute;
+    z-index: 10;
+    top: 10px;
+    right: 10px;
+    padding: 7px 12px;
+    color: #fff;
+    background: #294929;
+    border: 2px solid #fff;
+    border-radius: 999px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    font-size: 14px;
+    font-weight: 800;
+    line-height: 1;
+    transition: background-color 180ms ease, transform 180ms ease;
+
+    &:hover,
+    &:focus-visible {
+      color: #294929;
+      background: orange;
+      outline: 3px solid #294929;
+      outline-offset: 2px;
+      transform: translateY(-1px);
+    }
+  }
+
   .separator {
     margin: 64px 0 40px;
     display: flex;
@@ -198,6 +224,7 @@ h1, h2, h3, h4, h5, h6 {
     justify-content: center;
 
     .category {
+      position: relative;
       width: 155px;
       border-radius: 12px;
       box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.5);
@@ -234,6 +261,7 @@ h1, h2, h3, h4, h5, h6 {
   }
 
   #discount {
+    position: relative;
     background-image: url("../images/discount-bg-opacity.png"), linear-gradient(142deg,rgba(31, 69, 1, 1) 0%, rgba(24, 128, 1, 1) 100%);
     border-radius: 12px;
     display: flex;
@@ -442,6 +470,7 @@ h1, h2, h3, h4, h5, h6 {
       margin: 0 auto;
 
       .actual-advice {
+        position: relative;
         display: flex;
         flex-direction: column;
         min-width: 0;
@@ -526,6 +555,7 @@ h1, h2, h3, h4, h5, h6 {
     margin: 0 auto 48px;
 
     .customer-review {
+      position: relative;
       box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.5);
       border-radius: 12px;
       padding: 24px;
@@ -560,6 +590,7 @@ h1, h2, h3, h4, h5, h6 {
 
   #news-wrapper {
     #news {
+      position: relative;
       display: flex;
       flex-wrap: nowrap;
       gap: 24px;
