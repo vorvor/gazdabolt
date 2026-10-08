@@ -27,6 +27,39 @@ After Drupal changes, run `vendor/bin/drush cr` when needed. For maintenance-mod
 - Never delete, move, or rename `.lando/`, `.lando.yml`, `AGENTS.md`, `.git/`, or `.gitignore`.
 - Do not commit or push unless explicitly requested.
 
-## Verification
+## Testing and verification policy
 
-Validate changed files, rebuild caches when applicable, check relevant Drupal errors, run `git diff --check`, and inspect the final diff. Test both anonymous and authorized behavior when access permissions affect rendering.
+The user performs final testing and visual or functional review manually. This policy overrides any automatic testing or verification guidance elsewhere in this file, including use of the maintenance-mode verifier, unless the user explicitly requests that verification.
+
+### Default development behavior
+
+- Do not use test-driven development unless the user explicitly asks for it.
+- Do not automatically create automated tests or modify existing test files.
+- Do not run existing test suites unless explicitly requested.
+- Do not create ad-hoc verification scripts, including temporary Python, PHP, shell, or browser-based verifier scripts, merely to validate your own changes.
+- Do not spend time on dogfood, browser validation, visual regression testing, or extensive self-verification unless explicitly requested.
+- Do not inspect test files merely because they exist; inspect them only when directly necessary to understand the implementation.
+- For normal development work—especially Drupal theming, Twig, CSS, JavaScript, frontend layout, visual design, and small PHP changes—implement the requested change directly.
+- Assume the user will test the result manually in the browser or application.
+
+### Allowed lightweight safety checks
+
+Perform only fast checks needed to prevent obvious breakage, such as:
+
+- Syntax checks.
+- Obvious PHP fatal-error checks.
+- Malformed YAML or Twig detection when relevant.
+- Cache rebuilds when required for Drupal to discover or render a change.
+- `git diff --check` and review of the final diff.
+
+Do not build custom verification harnesses.
+
+### Completion report
+
+After implementation, clearly summarize:
+
+1. What changed.
+2. Which files changed.
+3. What the user should manually check.
+
+For security-critical, destructive, database-schema, deployment, migration, or similarly high-risk changes, warn that testing is advisable, but do not automatically run extensive tests unless explicitly requested.
