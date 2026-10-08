@@ -74,26 +74,39 @@ h1, h2, h3, h4, h5, h6 {
   .gazda-quick-edit {
     position: absolute;
     z-index: 10;
-    top: 10px;
-    right: 10px;
-    padding: 7px 12px;
-    color: #fff;
-    background: #294929;
-    border: 2px solid #fff;
+    top: 12px;
+    right: 12px;
+    display: inline-flex;
+    align-items: center;
+    min-height: 42px;
+    padding: 9px 16px;
+    box-sizing: border-box;
+    color: #183818;
+    background: #ffb000;
+    border: 3px solid #183818;
     border-radius: 999px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-    font-size: 14px;
-    font-weight: 800;
-    line-height: 1;
-    transition: background-color 180ms ease, transform 180ms ease;
+    box-shadow: 0 0 0 3px #fff, 0 6px 16px rgba(0, 0, 0, 0.42);
+    font-size: 16px;
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    transition: color 180ms ease, background-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
 
     &:hover,
     &:focus-visible {
-      color: #294929;
-      background: orange;
-      outline: 3px solid #294929;
-      outline-offset: 2px;
-      transform: translateY(-1px);
+      color: #fff;
+      background: #176517;
+      box-shadow: 0 0 0 4px #ffb000, 0 8px 20px rgba(0, 0, 0, 0.48);
+      outline: 3px solid #fff;
+      outline-offset: 3px;
+      transform: translateY(-2px) scale(1.03);
+    }
+
+    &:active {
+      box-shadow: 0 0 0 3px #fff, 0 3px 9px rgba(0, 0, 0, 0.38);
+      transform: translateY(1px);
     }
   }
 
@@ -2151,6 +2164,7 @@ img { max-width: 100%; height: auto; }
   #content #discount,
   #content .separator-icon img,
   #content #actual-wrapper .actual-products-link,
+  #content .gazda-quick-edit,
   .field--name-field-more-idea a,
   .field--name-field-more-idea a::after,
   #content #introduction .icons .block,
