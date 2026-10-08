@@ -33,7 +33,7 @@
     <div class="separator" role="heading" aria-level="2"><div class="separator-line"></div><div class="separator-icon"><img src="{{ asset_path }}/images/separators/sep-tomato-2.png" alt=""></div><div class="separator-text">{{ 'Termékkategóriák'|t }}</div><div class="separator-line"></div></div>
     <section id="categories" aria-label="{{ 'Product categories'|t }}">
       {% for category in gazda_categories %}
-        <article class="category">
+        <article id="category-{{ category.id }}" class="category">
           {% if category.edit_url %}<a class="gazda-quick-edit" href="{{ category.edit_url }}">{{ 'Edit'|t }} <span class="visually-hidden">{{ category.name }}</span></a>{% endif %}
           <a href="{{ category.url }}">{{ category.image }}<div class="cat-label">{{ category.name }}</div></a>
         </article>
@@ -75,7 +75,7 @@
         <div class="actual-subtitle"><time datetime="{{ advice_month.date_raw }}">{{ advice_month.month }}</time></div>
         <div id="actual">
           {% for advice in gazda_current_news %}
-            <article class="actual-advice">
+            <article id="actual-advice-{{ advice.id }}" class="actual-advice">
               {% if advice.edit_url %}<a class="gazda-quick-edit" href="{{ advice.edit_url }}">{{ 'Edit'|t }} <span class="visually-hidden">{{ advice.title }}</span></a>{% endif %}
               <div class="actual-image">{{ advice.image }}</div>
               <div class="actual-text">

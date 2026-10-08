@@ -118,7 +118,7 @@ function gazda_preprocess_page(array &$variables): void {
   $view_builder = $entity_type_manager->getViewBuilder('node');
   $front_page = \Drupal::routeMatch()->getParameter('node');
   $variables['gazda_page_edit_url'] = $front_page instanceof EntityInterface
-    ? gazda_entity_edit_url($front_page)
+    ? gazda_entity_edit_url($front_page, 'introduction')
     : NULL;
   $discount_ids = $node_storage->getQuery()
     ->accessCheck(TRUE)
@@ -173,7 +173,7 @@ function gazda_preprocess_page(array &$variables): void {
       ]),
       'date_from' => $format_discount_date($discount->get('field_date_from')->first()),
       'date_to' => $format_discount_date($discount->get('field_date_to')->first()),
-      'edit_url' => gazda_entity_edit_url($discount),
+      'edit_url' => gazda_entity_edit_url($discount, 'discount'),
     ];
   }
 
@@ -219,6 +219,7 @@ function gazda_preprocess_page(array &$variables): void {
         }
       }
       $variables['gazda_current_news'][] = [
+        'id' => $current_news->id(),
         'title' => $current_news->label(),
         'description' => $view_builder->viewField($current_news->get('field_description'), [
           'label' => 'hidden',
@@ -235,7 +236,10 @@ function gazda_preprocess_page(array &$variables): void {
         'url' => $url,
         'date_raw' => $current_news->get('field_date')->value,
         'month' => $date ? $months[(int) $date->format('n')] : '',
-        'edit_url' => gazda_entity_edit_url($current_news),
+        'edit_url' => gazda_entity_edit_url(
+          $current_news,
+          'actual-advice-' . $current_news->id(),
+        ),
       ];
     }
   }
@@ -268,7 +272,7 @@ function gazda_preprocess_page(array &$variables): void {
       ]),
       'date_raw' => $article->get('field_date')->value,
       'date_display' => $date ? $date->format('Y. m. d.') : '',
-      'edit_url' => gazda_entity_edit_url($article),
+      'edit_url' => gazda_entity_edit_url($article, 'news'),
     ];
   }
 
@@ -283,6 +287,7 @@ function gazda_preprocess_page(array &$variables): void {
 
   foreach ($term_storage->loadMultiple($term_ids) as $term) {
     $variables['gazda_categories'][] = [
+      'id' => $term->id(),
       'name' => $term->label(),
       'url' => $term->toUrl()->toString(),
       'image' => $term_view_builder->viewField($term->get('field_image'), [
@@ -293,7 +298,7 @@ function gazda_preprocess_page(array &$variables): void {
           'image_loading' => ['attribute' => 'lazy'],
         ],
       ]),
-      'edit_url' => gazda_entity_edit_url($term),
+      'edit_url' => gazda_entity_edit_url($term, 'category-' . $term->id()),
     ];
   }
 
@@ -331,22 +336,33 @@ function gazda_preprocess_page(array &$variables): void {
       : $node->label();
 
     $variables['gazda_reviews'][] = [
-      'attributes' => new Attribute(['class' => ['customer-review']]),
+      'attributes' => new Attribute([
+        'id' => 'customer-review-' . $node->id(),
+        'class' => ['customer-review'],
+      ]),
       'image' => $image,
       'name' => $name,
       'description' => $description,
-      'edit_url' => gazda_entity_edit_url($node),
+      'edit_url' => gazda_entity_edit_url(
+        $node,
+        'customer-review-' . $node->id(),
+      ),
     ];
   }
 }
 
 /**
- * Returns an entity edit URL when the current user may update the entity.
+ * Returns an entity edit URL that returns to its front-page section.
  */
-function gazda_entity_edit_url(EntityInterface $entity): ?string {
+function gazda_entity_edit_url(EntityInterface $entity, string $fragment): ?string {
   $access = $entity->access('update', NULL, TRUE);
 
-  return $access->isAllowed()
-    ? $entity->toUrl('edit-form')->toString()
-    : NULL;
+  if (!$access->isAllowed()) {
+    return NULL;
+  }
+
+  $destination = Url::fromRoute('<front>')->toString() . '#' . $fragment;
+  return $entity->toUrl('edit-form')
+    ->setOption('query', ['destination' => $destination])
+    ->toString();
 }
