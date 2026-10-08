@@ -3,8 +3,16 @@ langcode: en
 status: true
 dependencies:
   config:
+    - block_content.type.basic
+    - node.type.article
+    - node.type.current_news
+    - node.type.customers_said
+    - node.type.discount
+    - node.type.page
+    - taxonomy.vocabulary.categories
     - taxonomy.vocabulary.tags
   module:
+    - block_content
     - contextual
     - file
     - navigation
@@ -28,6 +36,13 @@ permissions:
   - 'create terms in tags'
   - 'create url aliases'
   - 'delete own files'
+  - 'edit any article content'
+  - 'edit any basic block content'
+  - 'edit any current_news content'
+  - 'edit any customers_said content'
+  - 'edit any discount content'
+  - 'edit any page content'
+  - 'edit terms in categories'
   - 'edit terms in tags'
   - 'revert all revisions'
   - 'view all revisions'
