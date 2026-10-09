@@ -384,7 +384,8 @@ h1, h2, h3, h4, h5, h6 {
       gap: 24px;
       width: 84%;
       margin: 24px auto;
-      padding: 8px 4px;
+      padding: 14px;
+      box-sizing: border-box;
       overflow: hidden;
       scroll-behavior: smooth;
     }
@@ -1230,7 +1231,7 @@ h1, h2, h3, h4, h5, h6 {
     width: calc(100% - 32px);
     margin-right: 16px;
     margin-left: 16px;
-    padding: 8px 2px 18px;
+    padding: 14px 14px 18px;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     scrollbar-width: thin;
@@ -2116,11 +2117,16 @@ img { max-width: 100%; height: auto; }
 
 #content #categories .category:hover,
 #content #categories .category:focus-within,
-#content #top-products .product:hover,
 #content #customer-reviews .customer-review:hover,
 #content #news-wrapper #news:hover {
   box-shadow: 0 18px 38px rgba(31, 63, 31, 0.22);
   transform: translateY(-8px);
+}
+
+#content #top-products .product:hover,
+#content #top-products .product:focus-within {
+  box-shadow: 0 8px 10px rgba(31, 63, 31, 0.3);
+  transform: translateY(-6px);
 }
 
 #content #categories .category {
