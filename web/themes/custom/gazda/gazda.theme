@@ -55,12 +55,13 @@ function gazda_page_attachments_alter(array &$attachments): void {
   $node_type = $entity_type_manager->getDefinition('node');
   $term_type = $entity_type_manager->getDefinition('taxonomy_term');
   $cache_tags = [];
-  foreach (['discount', 'current_news', 'article', 'customers_said'] as $bundle) {
+  foreach (['discount', 'current_news', 'article', 'product', 'customers_said'] as $bundle) {
     $cache_tags = array_merge($cache_tags, $node_type->getListCacheTags($bundle));
   }
   $cache_tags = array_merge(
     $cache_tags,
     $term_type->getListCacheTags('categories'),
+    $term_type->getListCacheTags('product_appearing_category'),
   );
 
   (new CacheableMetadata())
@@ -112,6 +113,7 @@ function gazda_preprocess_page(array &$variables): void {
   $variables['gazda_categories'] = [];
   $variables['gazda_current_news'] = [];
   $variables['gazda_news'] = NULL;
+  $variables['gazda_products'] = [];
   $variables['gazda_reviews'] = [];
   $entity_type_manager = \Drupal::entityTypeManager();
   $node_storage = $entity_type_manager->getStorage('node');
@@ -299,6 +301,55 @@ function gazda_preprocess_page(array &$variables): void {
         ],
       ]),
       'edit_url' => gazda_entity_edit_url($term, 'category-' . $term->id()),
+    ];
+  }
+
+  $appearing_term_ids = $term_storage->getQuery()
+    ->accessCheck(TRUE)
+    ->condition('vid', 'product_appearing_category')
+    ->execute();
+  $popular_term_ids = [];
+  foreach ($term_storage->loadMultiple($appearing_term_ids) as $term) {
+    if (mb_strtolower($term->label()) === 'népszerű') {
+      $popular_term_ids[] = $term->id();
+    }
+  }
+
+  $product_ids = [];
+  if ($popular_term_ids) {
+    $product_ids = $node_storage->getQuery()
+      ->accessCheck(TRUE)
+      ->condition('type', 'product')
+      ->condition('status', 1)
+      ->condition(
+        'field_product_appearing_category.target_id',
+        $popular_term_ids,
+        'IN',
+      )
+      ->sort('created', 'ASC')
+      ->execute();
+  }
+
+  foreach ($node_storage->loadMultiple($product_ids) as $product) {
+    $variables['gazda_products'][] = [
+      'id' => $product->id(),
+      'title' => $product->label(),
+      'description' => $view_builder->viewField($product->get('field_description'), [
+        'label' => 'hidden',
+        'type' => 'text_default',
+      ]),
+      'image' => $view_builder->viewField($product->get('field_image'), [
+        'label' => 'hidden',
+        'type' => 'image',
+        'settings' => [
+          'image_link' => '',
+          'image_loading' => ['attribute' => 'lazy'],
+        ],
+      ]),
+      'edit_url' => gazda_entity_edit_url(
+        $product,
+        'product-' . $product->id(),
+      ),
     ];
   }
 

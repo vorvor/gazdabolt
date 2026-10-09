@@ -1,0 +1,11 @@
+uuid: 89a7a270-7288-4427-b638-8ec297995692
+langcode: hu
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.product_appearing_category
+id: taxonomy_term.product_appearing_category
+target_entity_type_id: taxonomy_term
+target_bundle: product_appearing_category
+default_langcode: site_default
+language_alterable: false

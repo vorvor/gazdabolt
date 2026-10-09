@@ -7,6 +7,9 @@
         const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         const hero = frontPage.querySelector('#hero');
         const introductionBlocks = frontPage.querySelectorAll('#introduction .icons .block');
+        const productsSlider = frontPage.querySelector('#products-slider');
+        const previousProducts = frontPage.querySelector('#top-products .arrow-wrapper:not(.arrow-wrapper-right)');
+        const nextProducts = frontPage.querySelector('#top-products .arrow-wrapper-right');
         const revealGroups = [
           ['#introduction', ''],
           ['.separator', ''],
@@ -31,6 +34,32 @@
         });
 
         frontPage.classList.add('gazda-motion-ready');
+
+        if (productsSlider && previousProducts && nextProducts) {
+          const updateProductArrows = () => {
+            const maximumScroll = productsSlider.scrollWidth - productsSlider.clientWidth;
+            previousProducts.disabled = productsSlider.scrollLeft <= 1;
+            nextProducts.disabled = productsSlider.scrollLeft >= maximumScroll - 1;
+          };
+          const scrollProducts = (direction) => {
+            const product = productsSlider.querySelector('.product');
+            if (!product) {
+              return;
+            }
+
+            const gap = Number.parseFloat(window.getComputedStyle(productsSlider).columnGap) || 0;
+            productsSlider.scrollBy({
+              left: direction * (product.getBoundingClientRect().width + gap),
+              behavior: reduceMotion ? 'auto' : 'smooth',
+            });
+          };
+
+          previousProducts.addEventListener('click', () => scrollProducts(-1));
+          nextProducts.addEventListener('click', () => scrollProducts(1));
+          productsSlider.addEventListener('scroll', updateProductArrows, { passive: true });
+          window.addEventListener('resize', updateProductArrows, { passive: true });
+          updateProductArrows();
+        }
 
         if (reduceMotion || !('IntersectionObserver' in window)) {
           revealItems.forEach((element) => element.classList.add('is-visible'));

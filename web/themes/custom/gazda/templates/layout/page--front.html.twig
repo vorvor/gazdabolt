@@ -53,19 +53,12 @@
     {% endif %}
 
     <div class="separator" role="heading" aria-level="2"><div class="separator-line"></div><div class="separator-icon"><img src="{{ asset_path }}/images/separators/sep-saw-2.png" alt=""></div><div class="separator-text">{{ 'Népszerű'|t }}</div><div class="separator-line"></div></div>
-    {% set products = [
-      ['product-1.jpg', 'Univerzális tisztítószer', 'Sokoldalú tisztítószer a háztartás mindennapi feladataihoz.'],
-      ['product-2.jpg', 'Oltó olló', 'Pontos és tiszta vágást biztosító megbízható kerti szerszám.'],
-      ['product-3.jpg', 'Gyeptrágya', 'Tápanyag a sűrű, egészséges és üde zöld gyephez.'],
-      ['product-4.jpg', 'Konyhai mérleg', 'Praktikus és pontos segítség a mindennapi sütéshez-főzéshez.'],
-      ['product-5.jpg', 'Mosogatószer', 'Hatékony tisztítás és ragyogóan tiszta edények.']
-    ] %}
     <section id="top-products" aria-label="{{ 'Popular products'|t }}">
-      <div class="arrow-wrapper" aria-hidden="true"><div class="arrow"></div></div>
+      <button class="arrow-wrapper" type="button" aria-label="{{ 'Previous products'|t }}" aria-controls="products-slider"><span class="arrow" aria-hidden="true"></span></button>
       <div id="products-slider">
-        {% for product in products %}<article class="product"><div class="product-image"><img src="{{ asset_path }}/images/products/{{ product[0] }}" alt="" loading="lazy"></div><h3 class="product-name">{{ product[1]|t }}</h3><div class="product-desc">{{ product[2]|t }}</div></article>{% endfor %}
+        {% for product in gazda_products %}<article id="product-{{ product.id }}" class="product">{% if product.edit_url %}<a class="gazda-quick-edit" href="{{ product.edit_url }}">{{ 'Edit'|t }} <span class="visually-hidden">{{ product.title }}</span></a>{% endif %}<div class="product-image">{{ product.image }}</div><h3 class="product-name">{{ product.title }}</h3><div class="product-desc">{{ product.description }}</div></article>{% endfor %}
       </div>
-      <div class="arrow-wrapper arrow-wrapper-right" aria-hidden="true"><div class="arrow arrow-right"></div></div>
+      <button class="arrow-wrapper arrow-wrapper-right" type="button" aria-label="{{ 'Next products'|t }}" aria-controls="products-slider"><span class="arrow arrow-right" aria-hidden="true"></span></button>
     </section>
 
     {% if gazda_current_news %}

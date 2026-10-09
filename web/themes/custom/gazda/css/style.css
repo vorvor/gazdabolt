@@ -379,11 +379,14 @@ h1, h2, h3, h4, h5, h6 {
 
     #products-slider {
       display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
+      justify-content: flex-start;
+      flex-wrap: nowrap;
       gap: 24px;
       width: 84%;
       margin: 24px auto;
+      padding: 8px 4px;
+      overflow: hidden;
+      scroll-behavior: smooth;
     }
 
     .arrow-wrapper {
@@ -395,7 +398,20 @@ h1, h2, h3, h4, h5, h6 {
       border-radius: 100px;
       background: #fff;
       height: 33px;
-      padding: 12px 5px 7px 18px;
+      padding: 10px 5px 7px 8px;
+      border: 0;
+      box-sizing: content-box;
+      cursor: pointer;
+    }
+
+    .arrow-wrapper:hover,
+    .arrow-wrapper:focus-visible {
+      box-shadow: 0 0 12px #777;
+    }
+
+    .arrow-wrapper:disabled {
+      opacity: 0.35;
+      cursor: default;
     }
 
     .arrow-wrapper-right {
@@ -446,8 +462,8 @@ h1, h2, h3, h4, h5, h6 {
       box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.5);
       border-radius: 12px;
       padding: 24px;
-      flex-grow: 1;
-      flex-basis: 0;
+      flex: 0 0 calc((100% - 72px) / 4);
+      box-sizing: border-box;
 
       .product-image {
         text-align: center;

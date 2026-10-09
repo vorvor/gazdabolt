@@ -1,0 +1,9 @@
+uuid: 9776a167-9d46-4618-9714-b06dc7383876
+langcode: hu
+status: true
+dependencies: {  }
+name: 'Product appearing category'
+vid: product_appearing_category
+description: null
+weight: 0
+new_revision: false
