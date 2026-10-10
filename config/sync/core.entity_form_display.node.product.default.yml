@@ -3,6 +3,7 @@ langcode: hu
 status: true
 dependencies:
   config:
+    - field.field.node.product.field_category
     - field.field.node.product.field_description
     - field.field.node.product.field_image
     - field.field.node.product.field_product_appearing_category
@@ -20,6 +21,12 @@ content:
   created:
     type: datetime_timestamp
     weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_category:
+    type: options_buttons
+    weight: 122
     region: content
     settings: {  }
     third_party_settings: {  }

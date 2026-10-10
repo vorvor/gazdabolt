@@ -3,6 +3,7 @@ langcode: hu
 status: true
 dependencies:
   config:
+    - field.field.node.product.field_category
     - field.field.node.product.field_description
     - field.field.node.product.field_image
     - field.field.node.product.field_product_appearing_category
@@ -16,6 +17,14 @@ targetEntityType: node
 bundle: product
 mode: default
 content:
+  field_category:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 102
+    region: content
   field_description:
     type: text_default
     label: hidden
