@@ -308,7 +308,7 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     #discount-text {
-      padding: 0 66px 0 0;
+      padding: 30px 66px 0 0;
       border-right: 1px solid rgba(255, 255, 255, 0.6);
 
       #discount-subtitle {
@@ -326,7 +326,8 @@ h1, h2, h3, h4, h5, h6 {
         color: #fff;
         font-size: 3em;
         font-family: "Nunito", serif;
-        font-weight: 800;
+        font-weight: 700;
+        line-height: 1.22;
       }
     }
 
