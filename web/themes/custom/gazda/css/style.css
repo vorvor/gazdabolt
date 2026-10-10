@@ -325,7 +325,8 @@ h1, h2, h3, h4, h5, h6 {
         margin: 12px 0 24px;
         color: #fff;
         font-size: 3em;
-        font-family: "Arial Rounded MT Bold", serif;
+        font-family: "Nunito", serif;
+        font-weight: 800;
       }
     }
 
