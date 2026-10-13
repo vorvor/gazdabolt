@@ -59,17 +59,9 @@ content:
     third_party_settings: {  }
   field_products:
     type: options_buttons
-    weight: 131
-    region: content
-    settings: {  }
-    third_party_settings: {  }
-  field_url:
-    type: string_textfield
     weight: 12
     region: content
-    settings:
-      size: 60
-      placeholder: ''
+    settings: {  }
     third_party_settings: {  }
   langcode:
     type: language_select
@@ -125,5 +117,6 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
+  field_url: true
   promote: true
   sticky: true
