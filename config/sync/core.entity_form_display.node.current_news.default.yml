@@ -58,7 +58,7 @@ content:
       preview_image_style: thumbnail
     third_party_settings: {  }
   field_products:
-    type: options_select
+    type: options_buttons
     weight: 131
     region: content
     settings: {  }
