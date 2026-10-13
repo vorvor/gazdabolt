@@ -1,0 +1,24 @@
+uuid: 3005cc21-314b-4d5f-8fff-d9d5988402d0
+langcode: hu
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_body
+    - filter.format.basic_html
+    - node.type.current_news
+  module:
+    - text
+id: node.current_news.field_body
+field_name: field_body
+entity_type: node
+bundle: current_news
+label: 'Teljes szöveg'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - basic_html
+field_type: text_long

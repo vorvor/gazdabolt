@@ -11,7 +11,7 @@ id: node.current_news.field_description
 field_name: field_description
 entity_type: node
 bundle: current_news
-label: Description
+label: 'Rövid leírás'
 description: ''
 required: true
 translatable: true

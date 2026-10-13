@@ -205,21 +205,6 @@ function gazda_preprocess_page(array &$variables): void {
     ];
     foreach ($node_storage->loadMultiple($current_news_ids) as $current_news) {
       $date = $current_news->get('field_date')->date;
-      $url = '';
-      if (!$current_news->get('field_url')->isEmpty()) {
-        $item = $current_news->get('field_url')->first();
-        $raw = $item->uri ?? $item->value ?? NULL;
-        if ($raw) {
-          try {
-            $url = \Drupal\Core\Url::fromUri($raw)->toString();
-          }
-          catch (\InvalidArgumentException $e) {
-            // Plain string without a scheme (e.g. "example.com") — use as-is,
-            // or prepend a scheme if you know it's always external.
-            $url = $raw;
-          }
-        }
-      }
       $variables['gazda_current_news'][] = [
         'id' => $current_news->id(),
         'title' => $current_news->label(),
@@ -235,7 +220,7 @@ function gazda_preprocess_page(array &$variables): void {
             'image_loading' => ['attribute' => 'lazy'],
           ],
         ]),
-        'url' => $url,
+        'url' => $current_news->toUrl()->toString(),
         'date_raw' => $current_news->get('field_date')->value,
         'month' => $date ? $months[(int) $date->format('n')] : '',
         'edit_url' => gazda_entity_edit_url(
@@ -288,10 +273,14 @@ function gazda_preprocess_page(array &$variables): void {
     ->execute();
 
   foreach ($term_storage->loadMultiple($term_ids) as $term) {
+    $category_url = $term->toUrl()->toString();
+    if ($term->hasField('field_url') && !$term->get('field_url')->isEmpty()) {
+      $category_url = trim((string) $term->get('field_url')->value);
+    }
     $variables['gazda_categories'][] = [
       'id' => $term->id(),
       'name' => $term->label(),
-      'url' => $term->toUrl()->toString(),
+      'url' => $category_url,
       'image' => $term_view_builder->viewField($term->get('field_image'), [
         'label' => 'hidden',
         'type' => 'image',

@@ -1,0 +1,19 @@
+uuid: b83a1ac8-21cd-4de8-bf4b-0453646c2b21
+langcode: hu
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_url
+    - taxonomy.vocabulary.categories
+id: taxonomy_term.categories.field_url
+field_name: field_url
+entity_type: taxonomy_term
+bundle: categories
+label: URL
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

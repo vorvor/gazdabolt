@@ -3,9 +3,11 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.current_news.field_body
     - field.field.node.current_news.field_date
     - field.field.node.current_news.field_description
     - field.field.node.current_news.field_image
+    - field.field.node.current_news.field_products
     - field.field.node.current_news.field_url
     - node.type.current_news
   module:
@@ -18,6 +20,13 @@ targetEntityType: node
 bundle: current_news
 mode: default
 content:
+  field_body:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 102
+    region: content
   field_date:
     type: datetime_custom
     label: hidden
@@ -44,6 +53,14 @@ content:
         attribute: lazy
     third_party_settings: {  }
     weight: 0
+    region: content
+  field_products:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 103
     region: content
   field_url:
     type: string

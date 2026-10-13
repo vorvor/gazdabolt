@@ -243,8 +243,20 @@ h1, h2, h3, h4, h5, h6 {
       width: 155px;
       border-radius: 12px;
       box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.5);
-      padding-bottom: 24px;
       text-align: center;
+
+      .category-link {
+        display: block;
+        height: 100%;
+        padding-bottom: 24px;
+        box-sizing: border-box;
+        border-radius: inherit;
+
+        &:focus-visible {
+          outline: 3px solid #ef9b18;
+          outline-offset: 4px;
+        }
+      }
 
       .field--name-field-image {
         min-height: 128px;
@@ -1861,6 +1873,105 @@ img { max-width: 100%; height: auto; }
   max-width: 1200px;
   margin-right: auto;
   margin-left: auto;
+}
+
+/* Full Current news node. */
+.gazda-current-news__hero {
+  position: relative;
+  overflow: hidden;
+  border-radius: 18px;
+  background: #172317;
+  box-shadow: 0 18px 42px rgba(20, 42, 20, 0.24);
+}
+
+.gazda-current-news__image,
+.gazda-current-news__image .field,
+.gazda-current-news__image .field__item {
+  height: 100%;
+  min-height: clamp(440px, 58vw, 680px);
+}
+
+.gazda-current-news__image img {
+  display: block;
+  width: 100%;
+  height: clamp(440px, 58vw, 680px);
+  object-fit: cover;
+}
+
+.gazda-current-news__hero::after {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.04) 20%,
+    rgba(0, 0, 0, 0.42) 58%,
+    rgba(0, 0, 0, 0.9) 100%
+  );
+  content: "";
+  pointer-events: none;
+}
+
+.gazda-current-news__overlay {
+  position: absolute;
+  z-index: 1;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  max-width: 900px;
+  padding: clamp(28px, 6vw, 72px);
+  color: #fff;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.72);
+}
+
+.gazda-current-news__date {
+  margin-bottom: 12px;
+  color: #ffd387;
+  font-size: clamp(15px, 1.6vw, 19px);
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.gazda-current-news__date .field,
+.gazda-current-news__description .field,
+.gazda-current-news__description p:last-child {
+  margin-bottom: 0;
+}
+
+.gazda-current-news__title {
+  margin-bottom: 16px;
+  font-size: clamp(34px, 5vw, 64px);
+  line-height: 1.04;
+}
+
+.gazda-current-news__description {
+  max-width: 760px;
+  font-size: clamp(17px, 2vw, 22px);
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+@media (max-width: 640px) {
+  .gazda-current-news__image,
+  .gazda-current-news__image .field,
+  .gazda-current-news__image .field__item,
+  .gazda-current-news__image img {
+    min-height: 540px;
+    height: 540px;
+  }
+
+  .gazda-current-news__hero::after {
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.08) 8%,
+      rgba(0, 0, 0, 0.58) 48%,
+      rgba(0, 0, 0, 0.94) 100%
+    );
+  }
+
+  .gazda-current-news__overlay {
+    padding: 26px 22px;
+  }
 }
 
 /* Product cards on taxonomy term pages. */

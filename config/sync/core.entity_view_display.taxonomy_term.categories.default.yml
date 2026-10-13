@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.taxonomy_term.categories.field_image
+    - field.field.taxonomy_term.categories.field_url
     - taxonomy.vocabulary.categories
   module:
     - image
@@ -30,6 +31,15 @@ content:
         attribute: lazy
     third_party_settings: {  }
     weight: 0
+    region: content
+  field_url:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+      link_rel: canonical
+    third_party_settings: {  }
+    weight: 1
     region: content
 hidden:
   langcode: true

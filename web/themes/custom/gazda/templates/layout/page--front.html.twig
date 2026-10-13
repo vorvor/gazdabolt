@@ -35,7 +35,7 @@
       {% for category in gazda_categories %}
         <article id="category-{{ category.id }}" class="category">
           {% if category.edit_url %}<a class="gazda-quick-edit" href="{{ category.edit_url }}">{{ 'Edit'|t }} <span class="visually-hidden">{{ category.name }}</span></a>{% endif %}
-          <a href="{{ category.url }}">{{ category.image }}<div class="cat-label">{{ category.name }}</div></a>
+          <a class="category-link" href="{{ category.url }}">{{ category.image }}<div class="cat-label">{{ category.name }}</div></a>
         </article>
       {% endfor %}
     </section>
@@ -75,7 +75,7 @@
                 <h2 class="actual-title">{{ advice.title }}</h2>
                 <div class="actual-desc">{{ advice.description }}</div>
                 {% if advice.url %}
-                  <a class="actual-products-link" href="{{ advice.url }}">{{ 'Kapcsolódó termékek'|t }}<span aria-hidden="true">→</span></a>
+                  <a class="actual-products-link" href="{{ advice.url }}">{{ 'Bővebben'|t }}<span aria-hidden="true">→</span></a>
                 {% endif %}
               </div>
             </article>
