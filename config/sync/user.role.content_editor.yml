@@ -9,6 +9,7 @@ dependencies:
     - node.type.customers_said
     - node.type.discount
     - node.type.page
+    - node.type.product
     - taxonomy.vocabulary.categories
     - taxonomy.vocabulary.tags
   module:
@@ -33,15 +34,20 @@ permissions:
   - 'access files overview'
   - 'access navigation'
   - 'administer url aliases'
+  - 'create product content'
   - 'create terms in tags'
   - 'create url aliases'
+  - 'delete any product content'
   - 'delete own files'
+  - 'delete own product content'
   - 'edit any article content'
   - 'edit any basic block content'
   - 'edit any current_news content'
   - 'edit any customers_said content'
   - 'edit any discount content'
   - 'edit any page content'
+  - 'edit any product content'
+  - 'edit own product content'
   - 'edit terms in categories'
   - 'edit terms in tags'
   - 'revert all revisions'
