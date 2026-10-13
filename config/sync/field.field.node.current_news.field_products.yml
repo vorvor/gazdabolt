@@ -10,7 +10,7 @@ id: node.current_news.field_products
 field_name: field_products
 entity_type: node
 bundle: current_news
-label: Products
+label: 'Kapcsolódó termékek'
 description: ''
 required: false
 translatable: false
