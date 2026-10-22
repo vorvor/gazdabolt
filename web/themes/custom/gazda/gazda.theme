@@ -8,7 +8,6 @@
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Messenger\MessengerInterface;
-use Drupal\Core\Template\Attribute;
 use Drupal\Core\Url;
 
 /**
@@ -55,7 +54,7 @@ function gazda_page_attachments_alter(array &$attachments): void {
   $node_type = $entity_type_manager->getDefinition('node');
   $term_type = $entity_type_manager->getDefinition('taxonomy_term');
   $cache_tags = [];
-  foreach (['discount', 'current_news', 'article', 'product', 'customers_said'] as $bundle) {
+  foreach (['discount', 'current_news', 'article', 'product'] as $bundle) {
     $cache_tags = array_merge($cache_tags, $node_type->getListCacheTags($bundle));
   }
   $cache_tags = array_merge(
@@ -114,7 +113,6 @@ function gazda_preprocess_page(array &$variables): void {
   $variables['gazda_current_news'] = [];
   $variables['gazda_news'] = NULL;
   $variables['gazda_products'] = [];
-  $variables['gazda_reviews'] = [];
   $entity_type_manager = \Drupal::entityTypeManager();
   $node_storage = $entity_type_manager->getStorage('node');
   $view_builder = $entity_type_manager->getViewBuilder('node');
@@ -338,54 +336,6 @@ function gazda_preprocess_page(array &$variables): void {
       'edit_url' => gazda_entity_edit_url(
         $product,
         'product-' . $product->id(),
-      ),
-    ];
-  }
-
-  $node_ids = $node_storage->getQuery()
-    ->accessCheck(TRUE)
-    ->condition('type', 'customers_said')
-    ->condition('status', 1)
-    ->sort('created', 'ASC')
-    ->range(0, 3)
-    ->execute();
-
-  if (!$node_ids) {
-    return;
-  }
-
-  foreach ($node_storage->loadMultiple($node_ids) as $node) {
-    $image = $node->hasField('field_customer_image')
-      ? $view_builder->viewField($node->get('field_customer_image'), [
-        'label' => 'hidden',
-        'type' => 'image',
-        'settings' => [
-          'image_link' => '',
-          'image_loading' => ['attribute' => 'lazy'],
-        ],
-      ])
-      : [];
-    $description = $node->hasField('field_description')
-      ? $view_builder->viewField($node->get('field_description'), [
-        'label' => 'hidden',
-        'type' => 'text_default',
-      ])
-      : [];
-    $name = $node->hasField('field_customer_name') && !$node->get('field_customer_name')->isEmpty()
-      ? $node->get('field_customer_name')->value
-      : $node->label();
-
-    $variables['gazda_reviews'][] = [
-      'attributes' => new Attribute([
-        'id' => 'customer-review-' . $node->id(),
-        'class' => ['customer-review'],
-      ]),
-      'image' => $image,
-      'name' => $name,
-      'description' => $description,
-      'edit_url' => gazda_entity_edit_url(
-        $node,
-        'customer-review-' . $node->id(),
       ),
     ];
   }

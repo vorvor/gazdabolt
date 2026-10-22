@@ -601,6 +601,61 @@ h1, h2, h3, h4, h5, h6 {
     }
   }
 
+  .google-rating-summary {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: fit-content;
+    max-width: calc(100% - 32px);
+    margin: -20px auto 30px;
+    padding: 11px 18px;
+    box-sizing: border-box;
+    color: #294929;
+    background: #fff;
+    border: 1px solid #d9e1d4;
+    border-radius: 999px;
+    box-shadow: 0 5px 16px rgba(31, 63, 31, 0.14);
+    text-decoration: none;
+    transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+
+    &:hover,
+    &:focus-visible {
+      border-color: #83b735;
+      box-shadow: 0 8px 22px rgba(31, 63, 31, 0.2);
+      outline: 3px solid rgba(131, 183, 53, 0.28);
+      outline-offset: 3px;
+      transform: translateY(-2px);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+
+    .google-rating-summary__source {
+      color: #4285f4;
+      font-weight: 800;
+    }
+
+    .google-rating-summary__score {
+      font-size: 1.2em;
+    }
+
+    .google-rating-summary__stars {
+      color: #f9ab00;
+      font-size: 1.25em;
+      letter-spacing: 1px;
+      line-height: 1;
+    }
+
+    .google-rating-summary__count {
+      color: #4f5b4f;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+  }
+
   #customer-reviews {
     display: flex;
     flex-wrap: wrap;
@@ -638,6 +693,77 @@ h1, h2, h3, h4, h5, h6 {
         height: 1px;
         background: #ccc;
         margin: 12px auto;
+      }
+    }
+
+    .google-review {
+      display: flex;
+      flex: 1 1 calc(33.333% - 16px);
+      flex-direction: column;
+      min-width: 280px;
+      box-sizing: border-box;
+      text-align: left;
+
+      .google-review__header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .google-review__avatar {
+        display: grid;
+        flex: 0 0 48px;
+        width: 48px;
+        height: 48px;
+        place-items: center;
+        color: #fff;
+        background: #294929;
+        border-radius: 50%;
+        font-size: 1.2em;
+        font-weight: 800;
+      }
+
+      .google-review__author {
+        min-width: 0;
+
+        .customer-name {
+          margin: 0;
+        }
+
+        time {
+          color: #657065;
+          font-size: 0.88em;
+        }
+      }
+
+      .google-review__rating {
+        margin: 16px 0 12px;
+      }
+
+      .google-review__stars {
+        color: #f9ab00;
+        font-size: 1.25em;
+        letter-spacing: 2px;
+      }
+
+      .customer-review-text {
+        line-height: 1.55;
+      }
+
+      .google-review__source {
+        align-self: flex-start;
+        margin-top: auto;
+        padding-top: 18px;
+        color: #176517;
+        font-weight: 800;
+        text-underline-offset: 3px;
+
+        &:hover,
+        &:focus-visible {
+          color: #294929;
+          outline: 3px solid rgba(131, 183, 53, 0.28);
+          outline-offset: 3px;
+        }
       }
     }
   }
