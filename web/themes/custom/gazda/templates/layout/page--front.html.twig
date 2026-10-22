@@ -107,11 +107,11 @@
       <span class="google-rating-summary__count">{{ '267 értékelés'|t }}</span>
     </a>
     {% set google_reviews = [
-      { name: 'Tina Dr.', initial: 'T', rating: 5, stars: '★★★★★', date: '2026-06-27', date_display: '2026. június 27.', text: 'Szinte minden kapható, szezonális termékek is. A kiszolgálás mindig nagyon segítőkész és kedves. Könnyen megközelíthető helyen van.', url: 'https://www.google.com/maps/contrib/100320117207411245970/reviews?hl=hu' },
-      { name: 'Lászlo Szabó', initial: 'L', rating: 4, stars: '★★★★☆', date: '2026-04-03', date_display: '2026. április 3.', text: 'Rengeteg mindent lehet kapni. Ajánlom. Csavarok,petmetszerek,konyhafelszerelés,vetőmag, palánta,viragföld stb.', url: 'https://www.google.com/maps/contrib/108638664384424406557/reviews?hl=hu' },
-      { name: 'Julia B.', initial: 'J', rating: 5, stars: '★★★★★', date: '2026-01-03', date_display: '2026. január 3.', text: 'Szeretünk ide járni - mindig nagyon kedvesek. Örülünk, hogy egy kis vállalkozást támogathatunk! :) Egyébként szerintem árban is sokszor jobban megéri, mint az Obi vagy a Bauhaus.', url: 'https://www.google.com/maps/contrib/104299577386772252069/reviews?hl=hu' },
-      { name: 'Ervin Tóth', initial: 'E', rating: 5, stars: '★★★★★', date: '2025-09-30', date_display: '2025. szeptember 30.', text: 'Ha Szentendrén járok, mindig bemegyek, mert olyan nosztalgikus vidéki gazdabolt filingje van. Pöttyös fazéktól kezdve minden kapható, amit egy kis falusi bolt árusított.', url: 'https://www.google.com/maps/contrib/115302152720703934852/reviews?hl=hu' },
-      { name: 'Tamas Petro', initial: 'T', rating: 5, stars: '★★★★★', date: '2018-12-31', date_display: '2018. december 31.', text: 'Jók a srácok. Kertészeti témában jó tanacsokat tudnak adni. Elég vinni egy képet a növényről és próbálnak segíteni. Nekem eddig mindíg bejött. + Az ellenszert, tápszert meg is tudtam venni. Jobb mint egy multinál olvasgatni a használati útmutatót a sorok között. Ajánlom őket.', url: 'https://www.google.com/maps/contrib/101459966921562480532/reviews?hl=hu' }
+      { name: 'Tina Dr.', initial: 'T', rating: 5, stars: '★★★★★', date: '2026-06-27', date_display: '2026. június 27.', text: 'Szinte minden kapható, szezonális termékek is. A kiszolgálás mindig nagyon segítőkész és kedves. Könnyen megközelíthető helyen van.' },
+      { name: 'Lászlo Szabó', initial: 'L', rating: 4, stars: '★★★★☆', date: '2026-04-03', date_display: '2026. április 3.', text: 'Rengeteg mindent lehet kapni. Ajánlom. Csavarok,petmetszerek,konyhafelszerelés,vetőmag, palánta,viragföld stb.' },
+      { name: 'Julia B.', initial: 'J', rating: 5, stars: '★★★★★', date: '2026-01-03', date_display: '2026. január 3.', text: 'Szeretünk ide járni - mindig nagyon kedvesek. Örülünk, hogy egy kis vállalkozást támogathatunk! :) Egyébként szerintem árban is sokszor jobban megéri, mint az Obi vagy a Bauhaus.' },
+      { name: 'Ervin Tóth', initial: 'E', rating: 5, stars: '★★★★★', date: '2025-09-30', date_display: '2025. szeptember 30.', text: 'Ha Szentendrén járok, mindig bemegyek, mert olyan nosztalgikus vidéki gazdabolt filingje van. Pöttyös fazéktól kezdve minden kapható, amit egy kis falusi bolt árusított.' },
+      { name: 'Tamas Petro', initial: 'T', rating: 5, stars: '★★★★★', date: '2018-12-31', date_display: '2018. december 31.', text: 'Jók a srácok. Kertészeti témában jó tanacsokat tudnak adni. Elég vinni egy képet a növényről és próbálnak segíteni. Nekem eddig mindíg bejött. + Az ellenszert, tápszert meg is tudtam venni. Jobb mint egy multinál olvasgatni a használati útmutatót a sorok között. Ajánlom őket.' }
     ] %}
     <section id="customer-reviews" aria-label="{{ 'Customer reviews'|t }}">
       {% for review in google_reviews %}
@@ -128,7 +128,6 @@
             <span class="visually-hidden">{{ review.rating }} {{ 'csillag az 5-ből'|t }}</span>
           </div>
           <div class="customer-review-text">{{ review.text }}</div>
-          <a class="google-review__source" href="{{ review.url }}" target="_blank" rel="noopener noreferrer">{{ 'Google-vélemény'|t }}<span aria-hidden="true"> ↗</span></a>
         </article>
       {% endfor %}
     </section>

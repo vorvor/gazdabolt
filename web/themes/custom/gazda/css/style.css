@@ -749,22 +749,6 @@ h1, h2, h3, h4, h5, h6 {
       .customer-review-text {
         line-height: 1.55;
       }
-
-      .google-review__source {
-        align-self: flex-start;
-        margin-top: auto;
-        padding-top: 18px;
-        color: #176517;
-        font-weight: 800;
-        text-underline-offset: 3px;
-
-        &:hover,
-        &:focus-visible {
-          color: #294929;
-          outline: 3px solid rgba(131, 183, 53, 0.28);
-          outline-offset: 3px;
-        }
-      }
     }
   }
 
